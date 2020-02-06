@@ -1,4 +1,3 @@
-
 let sliderParent = document.querySelector(".slider");
 let sliderControls = document.querySelector(".slider-controls");
 
@@ -42,3 +41,12 @@ function runSlider() {
 }
 
 setInterval(runSlider, 5000)
+
+let loginBlock = document.querySelector(".login-block")
+let loginBtnClose = document.querySelector(".login__btn-close")
+let btnLoginPopUp = document.getElementById("btn-login-pop-up")
+function toggleDisplay(elem){
+    elem.classList.toggle("d-none")
+}
+loginBtnClose.addEventListener("click", ()=>{toggleDisplay(loginBlock)})
+btnLoginPopUp.addEventListener("click", ()=>{toggleDisplay(loginBlock)})

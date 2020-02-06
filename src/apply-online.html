@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Online Bank Account Request</title>
+</head>
+
+<body class="flex-col-v_center">
+    @@include('login.html')
+    @@include('top-nav.html')
+    @@include('menu.html')
+    <section class="section d-flex page-info">
+        <h1 class="page-info__header">Online bank account request</h1>
+        <ul class="page-info-wrap d-flex">
+            <li  class="page-info-wrap__item"><a href="index.html"> Home page > </a></li>
+            <li class="page-info-wrap__item">Online Bank Account Request</li>
+        </ul>
+    </section>
+    <section class="section d-flex">
+        <form action="online.php" method="POST" class="online-form">
+            <h2 class="block-info__header mb-10">Application Form</h2>
+            <span class="block-info__text mb-10">To apply for Bank Account, please fill in the application form below.</span>
+            <div class="online-form-input-block">
+                <div class="online-form-block">
+                    <span class="form-block__text">First Name</span>
+                    <input type="text" class="form__input form__input_w318" placeholder="Enter your first name">
+                </div>
+                <div class="online-form-block">
+                    <span class="form-block__text">Last Name</span>
+                    <input type="text" class="form__input form__input_w318" placeholder="Enter your last name">
+                </div>
+                <div class="online-form-block">
+                    <span class="form-block__text">Country</span>
+                    <input type="text" class="form__input form__input_w318" placeholder="Enter your country">
+                </div>
+                <div class="online-form-block">
+                    <span class="form-block__text">City</span>
+                    <input type="text" class="form__input form__input_w318" placeholder="Enter your city">
+                </div>
+                <div class="online-form-block">
+                    <span class="form-block__text">Address</span>
+                    <input type="text" class="form__input form__input_w318" placeholder="Enter your address">
+                </div>
+                <div class="online-form-block">
+                    <span class="form-block__text">Post Code</span>
+                    <input type="text" class="form__input form__input_w318" placeholder="Enter your post code">
+                </div>
+                <div class="online-form-block">
+                    <span class="form-block__text">Telephone Number</span>
+                    <input type="text" class="form__input form__input_w318" placeholder="+1234567890">
+                </div>
+                <div class="online-form-block">
+                    <span class="form-block__text">E-mail</span>
+                    <input type="text" class="form__input form__input_w318" placeholder="example@mail.com">
+                </div>
+                <div class="online-form-block">
+                    <span class="form-block__text">Password</span>
+                    <input type="text" class="form__input form__input_w318" placeholder="Type from 8 to 16 symbols">
+                </div>
+                <div class="online-form-block">
+                    <span class="form-block__text">Confirm password</span>
+                    <input type="text" class="form__input form__input_w318" placeholder="Type from 8 to 16 symbols">
+                </div>
+                <div class="online-form-block">
+                    <span class="form-block__text">Mistake example</span>
+                    <input type="submit" class="form__input form__input_w318 online-form__input_submit" value="ACCOUNT OPENING">
+                </div>
+            </div>
+        </form>
+    </section>
+    @@include('map-site.html')
+    @@include('footer-nav.html')
+    @@include('footer.html')
+    <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -12,6 +12,51 @@
 </head>
 
 <body class="flex-col-v_center">
+    <div class="login-block d-none">
+    <div class="login">
+        <img class="login__btn-close" src="img/close.png" alt="">
+        <img class="login__logo" src="img/logo.png" alt="">
+        <div class="authorization ">
+            <span class="login__header">
+                To enter online banking write your ID and password
+            </span>
+            <div class="input-block">
+                <span class="login__text">Login</span>
+                <input class="login__input" type="text" placeholder="Enter your login">
+            </div>
+            <div class="input-block">
+                <span class="login__text">Password</span>
+                <input class="login__input" type="password" placeholder="Enter your password">
+            </div>
+            <div class="input-block">
+                <!-- <span>Fill up all fields</span> -->
+                <button class="login__btn" id="login__btn">LOGIN</button>
+            </div>
+        </div>
+        <div class="login-pin d-none">
+            <span class="login__header">
+                Enter your PIN
+            </span>
+            <div class="input-block">
+                <span class="login__text">PIN</span>
+                <input class="login__input" type="text" placeholder="Enter your PIN">
+            </div>
+            <div class="input-block">
+                <!-- <span>Fill up all fields</span> -->
+                <button class="login__btn" id="pin__btn">SUBMIT</button>
+            </div>
+        </div>
+        <div class="login-error d-none">
+            <span class="login__header login__header_error">
+                Invalid login and password  or PIN
+            </span>
+            <span class="login__text">
+                If you are sure you are typing everything right please contact
+                support <a href="contact.html" class="color_link">here</a>
+            </span>
+        </div>
+    </div>
+</div>
     <div class="top-nav">
     <div class="site-container d-flex align-center justify-between pt-5 ">
         <a href="index.html" class="top-nav__logo">
@@ -19,19 +64,19 @@
         </a>
         <ul class="d-flex  top-nav-wrap">
             <li class="top-nav-wrap__item">
-                <a href="#" class="top-nav-wrap__link">SITE MAP</a>
+                <a href="#map-site" class="top-nav-wrap__link">SITE MAP</a>
             </li>
             <li class="top-nav-wrap__item">
                 <a href="fees.html" class="top-nav-wrap__link">FEES</a>
             </li>
             <li class="top-nav-wrap__item">
-                <a href="#" class="top-nav-wrap__link">CONTACT US</a>
+                <a href="contact.html" class="top-nav-wrap__link">CONTACT US</a>
             </li>
             <li class="top-nav-wrap__item">
-                <a href="#" class="top-nav-wrap__link">APPLY ONLINE</a>
+                <a href="apply-online.html" class="top-nav-wrap__link">APPLY ONLINE</a>
             </li>
             <li class="top-nav-wrap__item">
-                <a href="#" class="top-nav-wrap__link">LOGIN</a>
+                <span id="btn-login-pop-up" class="top-nav-wrap__link pointer">LOGIN</span>
             </li>
         </ul>
     </div>
@@ -43,99 +88,99 @@
                 <a href="about.html">ABOUT US</a>
             </li>
             <li class="menu-item">
-                <a href="#">CRYPTO</a>
+                <a href="crypto.html">CRYPTO</a>
             </li>
             <li class="menu-item">
-                <a href="#">DEDICATED IBAN</a>
+                <a href="swift-iban.html">DEDICATED IBAN</a>
             </li>
             <li class="menu-item">
-                <a href="#">FATCA/CRS</a>
+                <a href="fatca-crs.html">FATCA/CRS</a>
             </li>
             <li class="menu-item menu-item_banking">
-                <a href="#">BANKING</a>
+                <a href="private-banking.html">BANKING</a>
                 <ul class="menu-banking">
                     <li class="menu-banking__item menu-banking__item_header">
-                        <a href="#">
+                        <a href="private-banking.html">
                             Private banking
                         </a>
                     </li>
                     <li class="menu-banking__item">
-                        <a href="#">
+                        <a href="investment-consulting.html">
                             Investment consulting
                         </a>
                     </li>
                     <li class="menu-banking__item">
-                        <a href="#">
+                        <a href="exclusive.html">
                             Exclusive solutions for extraordinary people
                         </a>
                     </li>
                     <li class="menu-banking__item">
-                        <a href="#">
+                        <a href="products.html">
                             Products
                         </a>
                     </li>
                     <li class="menu-banking__item">
-                        <a href="#">
+                        <a href="business-card.html">
                             Business Card
                         </a>
                     </li>
                     <li class="menu-banking__item menu-banking__item_header">
-                        <a href="#">
+                        <a href="corporate-banking.html">
                             Corporate banking
                         </a>
                     </li>
                     <li class="menu-banking__item">
-                        <a href="#">
+                        <a href="trade-finance-corporate.html">
                             Trade finance
                         </a>
                     </li>
                     <li class="menu-banking__item">
-                        <a href="#">
+                        <a href="cash-management-corporate.html">
                             Cash management
                         </a>
                     </li>
                     <li class="menu-banking__item">
-                        <a href="#">
+                        <a href="business-card.html">
                             Business card
                         </a>
                     </li>
                     <li class="menu-banking__item menu-banking__item_header">
-                        <a href="#">
+                        <a href="commercial-banking.html">
                             Commercial banking
                         </a>
                     </li>
                     <li class="menu-banking__item">
-                        <a href="#">
+                        <a href="trade-finance-commercial.html">
                             Trade finance
                         </a>
                     </li>
                     <li class="menu-banking__item">
-                        <a href="#">
+                        <a href="cash-management-commercial.html">
                             Cash management
                         </a>
                     </li>
                     <li class="menu-banking__item">
-                        <a href="#">
+                        <a href="investment-consulting-commercial.html">
                             Investment consulting
                         </a>
                     </li>
                     <li class="menu-banking__item">
-                        <a href="#">
+                        <a href="business-card.html">
                             Business card
                         </a>
                     </li>
                 </ul>
             </li>
             <li class="menu-item menu-item_wealth">
-                <a href="#">WEALTH MANAGEMENT</a>
+                <a href="wealth-management.html">WEALTH MANAGEMENT</a>
                 <ul class="menu-banking">
                     <li class="menu-banking__item menu-banking__item_header">
-                        <a href="#">
+                        <a href="investment-products.html">
                             Investment products
                         </a>
                     </li>
                     <li class="menu-banking__item">
-                        <a href="#">
+                        <a href="leverage-products.html">
                             Leverage products
                         </a>
                     </li>
@@ -145,22 +190,22 @@
                         </a>
                     </li>
                     <li class="menu-banking__item">
-                        <a href="#">
+                        <a href="deposit-products.html">
                             Euro Deniz account
                         </a>
                     </li>
                     <li class="menu-banking__item">
-                        <a href="#">
+                        <a href="deposit-products.html">
                             Savings account
                         </a>
                     </li>
                     <li class="menu-banking__item">
-                        <a href="#">
+                        <a href="deposit-products.html">
                             Term deposit account
                         </a>
                     </li>
                     <li class="menu-banking__item">
-                        <a href="#">
+                        <a href="deposit-products.html">
                             Fixed deposit account
                         </a>
                     </li>
@@ -262,7 +307,7 @@
             Our services and support are delivered, where possible, in the client's native language.
         </span>
     </section>
-    <section class="section d-flex block-site-map justify-between">
+    <section class="section d-flex block-site-map justify-between" id="map-site">
     <ul class="site-map">
         <li class="site-map__item">
             <a href="fees.html" class="site-map__link site-map__link_header">
@@ -270,50 +315,45 @@
             </a>
         </li>
         <li class="site-map__item">
-            <a href="#" class="site-map__link">
+            <a href="swift-iban.html" class="site-map__link">
                 Dedicated SWIFT IBAN
             </a>
         </li>
         <li class="site-map__item">
-            <a href="#" class="site-map__link">
+            <a href="crypto.html" class="site-map__link">
                 Crypto currency
             </a>
         </li>
         <li class="site-map__item">
-            <a href="#" class="site-map__link">
+            <a href="contact.html" class="site-map__link">
                 Contact us
             </a>
         </li>
         <li class="site-map__item">
-            <a href="#" class="site-map__link">
+            <a href="fatca-crs.html" class="site-map__link">
                 FATCA/CRS
             </a>
         </li>
     </ul>
     <ul class="site-map">
         <li class="site-map__item">
-            <a href="#" class="site-map__link site-map__link_header">
+            <a href="products.html" class="site-map__link site-map__link_header">
                 Products
             </a>
         </li>
         <li class="site-map__item">
-            <a href="#" class="site-map__link">
+            <a href="investment-consulting.html" class="site-map__link">
                 Investment Consulting
             </a>
         </li>
         <li class="site-map__item">
-            <a href="#" class="site-map__link">
+            <a href="cash-management-corporate.html" class="site-map__link">
                 Cash Management
             </a>
         </li>
         <li class="site-map__item">
-            <a href="#" class="site-map__link">
+            <a href="trade-finance-corporate.html" class="site-map__link">
                 Trade Finance
-            </a>
-        </li>
-        <li class="site-map__item">
-            <a href="#" class="site-map__link">
-                Banking
             </a>
         </li>
         <li class="site-map__item">
@@ -324,44 +364,44 @@
     </ul>
     <ul class="site-map">
         <li class="site-map__item">
-            <a href="#" class="site-map__link site-map__link_header">
+            <a href="private-banking.html" class="site-map__link site-map__link_header">
                 Banking
             </a>
         </li>
         <li class="site-map__item">
-            <a href="#" class="site-map__link">
+            <a href="corporate-banking.html" class="site-map__link">
                 Corporate Banking
             </a>
         </li>
         <li class="site-map__item">
-            <a href="#" class="site-map__link">
+            <a href="private-banking.html" class="site-map__link">
                 Private Banking
             </a>
         </li>
         <li class="site-map__item">
-            <a href="#" class="site-map__link">
+            <a href="business-card.html" class="site-map__link">
                 Business Card
             </a>
         </li>
         <li class="site-map__item">
-            <a href="#" class="site-map__link">
+            <a href="commercial-banking.html" class="site-map__link">
                 Commercial Banking
             </a>
         </li>
     </ul>
     <ul class="site-map site-map_width-220">
         <li class="site-map__item">
-            <a href="#" class="site-map__link site-map__link_header">
+            <a href="wealth-management.html" class="site-map__link site-map__link_header">
                 Wealth Management
             </a>
         </li>
         <li class="site-map__item">
-            <a href="#" class="site-map__link">
+            <a href="investment-products.html" class="site-map__link">
                 Investment Products
             </a>
         </li>
         <li class="site-map__item">
-            <a href="#" class="site-map__link">
+            <a href="leverage-products.html" class="site-map__link">
                 Leverage Products
             </a>
         </li>
@@ -373,22 +413,22 @@
     </ul>
     <ul class="site-map site-map_width-190">
         <li class="site-map__item">
-            <a href="#" class="site-map__link site-map__link_header">
+            <a href="deposit-products.html" class="site-map__link site-map__link_header">
                 Euro Deniz Account
             </a>
         </li>
         <li class="site-map__item">
-            <a href="#" class="site-map__link">
+            <a href="deposit-products.html" class="site-map__link">
                 Term Deposit Account
             </a>
         </li>
         <li class="site-map__item">
-            <a href="#" class="site-map__link">
+            <a href="deposit-products.html" class="site-map__link">
                 Fixed Deposit Account
             </a>
         </li>
         <li class="site-map__item">
-            <a href="#" class="site-map__link">
+            <a href="deposit-products.html" class="site-map__link">
                 Savings account
             </a>
         </li>
@@ -396,9 +436,9 @@
 </section>
     <section class="footer-nav">
     <div class="footer-nav-block d-flex align-center justify-between">
-        <a href="#" class="footer-nav__link">CONTACT US</a>
+        <a href="contact.html" class="footer-nav__link">CONTACT US</a>
         <a href="about.html" class="footer-nav__link">ABOUT US</a>
-        <a href="#" class="footer-nav__link">PRIVACY POLICY</a>
+        <a href="privacy-policy.html" class="footer-nav__link">PRIVACY POLICY</a>
     </div>
 </section>
     <footer class="section d-flex  footer">
@@ -411,45 +451,45 @@
         </span>
         <ul class="footer-wrap d-flex">
             <li class="footer-wrap__item">
-                <a href="" class="footer-wrap__link">
+                <a target="_blank" title="FaceBook" href="https://www.facebook.com/eurodeniz" class="footer-wrap__link">
                     <img src="img/facebook.png" alt="icon">
                 </a>
             </li>
             <li class="footer-wrap__item">
-                <a href="" class="footer-wrap__link">
+                <a target="_blank" title="linkedIn" href="https://www.linkedin.com/company/euro-deniz-ibu" class="footer-wrap__link">
                     <img src="img/linkedin.png" alt="icon">
                 </a>
             </li>
             <li class="footer-wrap__item">
-                <a href="" class="footer-wrap__link">
+                <a target="_blank" title="Telegram" href="tg://resolve?domain=EuroDenizManager" class="footer-wrap__link">
                     <img src="img/telegram.png" alt="icon">
                 </a>
             </li>
             <li class="footer-wrap__item">
-                <a href="" class="footer-wrap__link">
+                <a target="_blank" title="WhatsApp" href="https://wa.me/35796056338?text=EuroDenizIBU.%20Hello." class="footer-wrap__link">
                     <img src="img/whatsapp.png" alt="icon">
                 </a>
             </li>
             <li class="footer-wrap__item">
-                <a href="" class="footer-wrap__link">
+                <a target="_blank" title="Signal" href="signal://35796056338?text=Hello%2C%20Hello" class="footer-wrap__link">
                     <img src="img/signal.png" alt="icon">
                 </a>
             </li>
         </ul>
     </div>
     <div class="footer-block-img d-flex justify-between">
-        <a href="#"><img src="img/aliance.png" alt="partner image"></a>
-        <a href="#"><img src="img/express.png" alt="partner image"></a>
-        <a href="#"><img src="img/blackrock.png" alt="partner image"></a>
-        <a href="#"><img src="img/ethereum.png" alt="partner image"></a>
-        <a href="#"><img src="img/fidelity.png" alt="partner image"></a>
-        <a href="#"><img src="img/franklin.png" alt="partner image"></a>
-        <a href="#"><img src="img/swift.png" alt="partner image"></a>
-        <a href="#"><img src="img/master.png" alt="partner image"></a>
-        <a href="#"><img src="img/gram.png" alt="partner image"></a>
-        <a href="#"><img src="img/tether.png" alt="partner image"></a>
-        <a href="#"><img src="img/visa.png" alt="partner image"></a>
-        <a href="#"><img src="img/western.png" alt="partner image"></a>
+        <a href="https://www.gopai.com/" title="Payment Alliance" target="_blank"><img src="img/aliance.png" alt="partner image"></a>
+        <a href="https://www.americanexpress.com/us/help/make-a-payment.html" title="AMERICAN EXPRESS" target="_blank"><img src="img/express.png" alt="partner image"></a>
+        <a href="https://www.payscale.com/research/US/Employer=Blackrock%2C_Inc./Salary" title="Blackrock" target="_blank"><img src="img/blackrock.png" alt="partner image"></a>
+        <a href="https://coingate.com/accept/eth/ethereum" title="Ethereum Payments" target="_blank"><img src="img/ethereum.png" alt="partner image"></a>
+        <a href="https://fidelitypayment.co.uk/" title="Fidelity Payment" target="_blank"><img src="img/fidelity.png" alt="partner image"></a>
+        <a href="https://www.franklintempletonindia.com/" title="Franklin Templeton" target="_blank"><img src="img/franklin.png" alt="partner image"></a>
+        <a href="https://www.swift.com/" title="SWIFT" target="_blank"><img src="img/swift.png" alt="partner image"></a>
+        <a href="https://www.mastercard.us/en-us.html" title="Mastercard" target="_blank"><img src="img/master.png" alt="partner image"></a>
+        <a href="http://global.moneygram.com/" title="MoneyGram" target="_blank"><img src="img/gram.png" alt="partner image"></a>
+        <a href="https://tether.to/" title="Tether" target="_blank"><img src="img/tether.png" alt="partner image"></a>
+        <a href="https://usa.visa.com/" title="Visa" target="_blank"><img src="img/visa.png" alt="partner image"></a>
+        <a href="https://www.westernunion.com/us/en/home.html" title="Western Union" target="_blank"><img src="img/western.png" alt="partner image"></a>
     </div>
 </footer>
     <script src="js/script.js"></script>
