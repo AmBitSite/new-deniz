@@ -1214,6 +1214,10 @@ h1, h2, h3 {
 
 .transaction-date-wrap__img {}
 
+.link-benificiary{
+    word-break: break-word;
+    color: #0075E1;
+}
 .transfer__input {
     width: 318px;
     box-sizing: border-box;
