@@ -1,0 +1,55 @@
+<input type="radio" id="intra-transfer" name="account-tab" class="tab__input">
+<div class="menu-tab-block">
+    <div class="mb-30 tab-account-details ">
+        <span class="account__main-header">INTRA TRANSFER</span>
+        <div>
+            <div class="account-table">
+                <div class="account-table-header d-flex">
+                    <span class="header__text_main">Convert currency - enter transfer information</span>
+                </div>
+                <div class="d-flex transfer-wrap-field">
+                    <div class="intra-input-block transfer-date-relative d-flex">
+                        <span class="transfer-input__text">From account number</span>
+                        <ul class="transfer-account-wrap transfer-date-wrap-absolute" id="intra-date-wrap">
+                            <li class="transfer-account-wrap__item d-flex">
+                                <span id="intra-account">All accounts</span>
+                                <img class="transfer-account-wrap__img" id="intra-wrap-img" src="img/arrow.png" alt="arrow">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="intra-input-block transfer-date-relative d-flex">
+                        <span class="transfer-input__text" >To account number</span>
+                        <ul class="transfer-account-wrap transfer-date-wrap-absolute" id="intra-date-wrap-to">
+                            <li class="transfer-account-wrap__item d-flex">
+                                <span id="intra-to-account">All accounts</span>
+                                <img class="transfer-account-wrap__img" id="intra-wrap-img-to" src="img/arrow.png" alt="arrow">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="intra-input-block d-flex">
+                        <span class="transfer-input__text">Amount</span>
+                        <input type="number" step="0.000001" class="transfer__input" id="intra-amount_input">
+                    </div>
+                    <div class="intra-input-block d-flex">
+                        <span class="transfer-input__text">Reference</span>
+                        <input type="text" class="transfer__input" id="intra-reference_input">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="intra-wrap-field mb-100">
+            <div class="intra-btn-block">
+                <input type="checkbox" id="intra-btn__input" class="d-none">
+                <label for="intra-btn__input" class="intra-btn-label d-flex mb-10">
+                    <div class="intra-btn-check d-flex">
+                        <div class="intra-btn-check_active"></div>
+                    </div>
+                    <span class="intra-pay-charges-block__text">I agree with EURO Deniz IBU Terms and
+                        Conditions</span>
+                </label>
+                <button class="intra__btn" >SEND</button>
+            </div>
+        </div>
+    </div>
+
+</div>

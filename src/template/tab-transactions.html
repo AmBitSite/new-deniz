@@ -1,0 +1,54 @@
+<input type="radio" id="transactions" name="account-tab" class="tab__input">
+<div class="menu-tab-block ">
+    <div class="mb-30 tab-account-details">
+        <span class="account__main-header">TRANSACTIONS</span>
+    </div>
+    <div class="account-table mb-100" id="transactions-table">
+        <div class="account-table-header d-flex transaction-date-block">
+            <div class="transaction-date transaction-date-relative d-flex">
+                <span class="transaction-date__text">Filter by the account</span>
+                <ul class="transaction-date-wrap transaction-date-wrap-absolute" id="transaction-date-wrap">
+                    <li class="transaction-date-wrap__item">
+                        <span>All accounts</span>
+                        <img class="transaction-date-wrap__img" id="statistic-wrap-img" src="img/arrow.png" alt="arrow">
+                    </li>
+                </ul>
+            </div>
+            <div class="transaction-date d-flex">
+                <span class="transaction-date__text">From date</span>
+                <input class="transaction-date__input" type="text" placeholder="DD.MM.YEAR">
+            </div>
+            <div class="transaction-date d-flex">
+                <span class="transaction-date__text">To date</span>
+                <input class="transaction-date__input" type="text" placeholder="DD.MM.YEAR">
+            </div>
+            <button class="transaction-date__submit">SUBMIT</button>
+        </div>
+        <div class="d-flex account-table-row-header" >
+            <span class="tab__text_style d-flex account-table-row-column_w89">
+                Date
+            </span>
+            <span class="tab__text_style d-flex account-table-row-column_171">
+                Transfer type
+            </span>
+            <span class="tab__text_style d-flex account-table-row-column_140">
+                Sender
+            </span>
+            <span class="tab__text_style d-flex account-table-row-column_w143">
+                Beneficiary
+            </span>
+            <span class="tab__text_style d-flex account-table-row-column_w141">
+                Transaction Number
+            </span>
+            <span class="tab__text_style d-flex account-table-row-column_w98">
+                Amount
+            </span>
+            <span class="tab__text_style d-flex account-table-row-column_w96">
+                Status
+            </span>
+            <span class="tab__text_style d-flex account-table-row-column_w76">
+                Balance
+            </span>
+        </div>
+    </div>
+</div>

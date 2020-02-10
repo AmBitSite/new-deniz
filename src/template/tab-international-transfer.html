@@ -1,0 +1,106 @@
+<input type="radio" id="international-transfer" name="account-tab" class="tab__input">
+<div class="menu-tab-block">
+    <div class="mb-30 tab-account-details transfer-block">
+        <span class="account__main-header">INTERNATIONAL TRANSFER</span>
+        <span  class="transfer__main-text">Payment instructions will be processed within the same date of request, if made before 13:00 (GMT +02:00).
+        </span>
+        <span class="transfer__main-text">Transfer may take up to 3 business days to reach the beneficiary. Be sure to double check your account
+            number(s)  and details carefully. All Bank details are encrypted.</span>
+    </div>
+    <div class="account-table">
+        <div class="account-table-header d-flex">
+            <span class="header__text_main">Payment details</span>
+        </div>
+        <div class="d-flex transfer-wrap-field">
+            <div class="transfer-input-block-1st transfer-date-relative d-flex">
+                <span class="transfer-input__text">Account Number</span>
+                <ul class="transfer-account-wrap transfer-date-wrap-absolute" id="international-date-wrap">
+                    <li class="transfer-account-wrap__item d-flex">
+                        <span id="transfer-account-number">All accounts</span>
+                        <img class="transfer-account-wrap__img" id="international-wrap-img" src="img/arrow.png" alt="arrow">
+                    </li>
+                </ul>
+            </div>
+            <div class="transfer-input-block d-flex">
+                <span class="transfer-input__text">Amount</span>
+                <input type="text" class="transfer__input">
+            </div>
+            <div class="transfer-input-block d-flex">
+                <span class="transfer-input__text">Bank Name</span>
+                <input type="text" class="transfer__input">
+            </div>
+            <div class="transfer-input-block d-flex">
+                <span class="transfer-input__text">Bank Address</span>
+                <input type="text" class="transfer__input">
+            </div>
+            <div class="transfer-input-block d-flex">
+                <span class="transfer-input__text">SWIFT Code</span>
+                <input type="text" class="transfer__input">
+            </div>
+            <div class="transfer-input-block d-flex">
+                <span class="transfer-input__text">IBAN/Beneficiary Account Number</span>
+                <input type="text" class="transfer__input">
+            </div>
+            <div class="transfer-input-block d-flex">
+                <span class="transfer-input__text">Beneficiary Country</span>
+                <input type="text" class="transfer__input">
+            </div>
+            <div class="transfer-input-block d-flex">
+                <span class="transfer-input__text">Beneficiary City</span>
+                <input type="text" class="transfer__input">
+            </div>
+            <div class="transfer-input-block d-flex">
+                <span class="transfer-input__text">Beneficiary Address</span>
+                <input type="text" class="transfer__input">
+            </div>
+            <div class="transfer-input-block d-flex">
+                <span class="transfer-input__text">Beneficiary Reference</span>
+                <input type="text" class="transfer__input">
+            </div>
+            <div class="transfer-input-block d-flex">
+                <span class="transfer-input__text">Beneficiary Name</span>
+                <input type="text" class="transfer__input">
+            </div>
+        </div>
+        <div class="transfer-wrap-field mb-100">
+            <span class="transfer-pay-charges-block__text mb-10 d-flex">Who will pay the charges:</span>
+            <div class="transfer-pay-charges">
+                <input type="radio" name="will-pay" id="pay-sender" value="Sender to pay all charges (OUR)" class="d-none transfer-pay-charges__input">
+                <label for="pay-sender" class="transfer-pay-charges-label">
+                    <div class="transfer-pay-charges-block d-flex">
+                        <div class="transfer-pay-charges-block_active"></div>
+                    </div>
+                    <span class="transfer-pay-charges-block__text">Sender to pay all charges (OUR)</span>
+                </label>
+            </div>
+            <div class="transfer-pay-charges">
+                <input type="radio" name="will-pay" id="pay-beneficiary" value="Beneficiary to pay all charges (BEN)" class="d-none transfer-pay-charges__input">
+                <label for="pay-beneficiary" class="transfer-pay-charges-label">
+                    <div class="transfer-pay-charges-block d-flex">
+                        <div class="transfer-pay-charges-block_active"></div>
+                    </div>
+                    <span class="transfer-pay-charges-block__text">Beneficiary to pay all charges (BEN)</span>
+                </label>
+            </div>
+            <div class="transfer-pay-charges">
+                <input type="radio" name="will-pay" id="pay-Shared" value="Shared (SHA)" class="d-none transfer-pay-charges__input">
+                <label for="pay-Shared" class="transfer-pay-charges-label">
+                    <div class="transfer-pay-charges-block d-flex">
+                        <div class="transfer-pay-charges-block_active"></div>
+                    </div>
+                    <span class="transfer-pay-charges-block__text">Shared (SHA)</span>
+                </label>
+            </div>
+            <div class="transfer-btn-block">
+                <input type="checkbox" id="transfer-btn__input" class="d-none">
+                <label for="transfer-btn__input" class="transfer-btn-label d-flex mb-10">
+                    <div class="transfer-btn-check d-flex">
+                        <div class="transfer-btn-check_active"></div>
+                    </div>
+                    <span class="transfer-pay-charges-block__text">I agree with EURO Deniz IBU Terms and Conditions</span>
+                </label>
+                <button class="transfer__btn">SEND</button>
+            </div>
+        </div>
+    </div>
+</div>

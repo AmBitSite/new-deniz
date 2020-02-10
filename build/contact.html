@@ -8,6 +8,7 @@
     <link rel="icon" href="img/favicon.png" type="image/png">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,500,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="//code.jivosite.com/widget.js" data-jv-id="nxooD9wLJZ" async></script>
     <title>Contact Us</title>
 </head>
 
@@ -16,20 +17,19 @@
     <div class="login">
         <img class="login__btn-close" src="img/close.png" alt="">
         <img class="login__logo" src="img/logo.png" alt="">
-        <div class="authorization ">
+        <div class="authorization">
             <span class="login__header">
                 To enter online banking write your ID and password
             </span>
             <div class="input-block">
                 <span class="login__text">Login</span>
-                <input class="login__input" type="text" placeholder="Enter your login">
+                <input class="login__input authorization__login" type="text" placeholder="Enter your login">
             </div>
             <div class="input-block">
                 <span class="login__text">Password</span>
-                <input class="login__input" type="password" placeholder="Enter your password">
+                <input class="login__input authorization__password" type="password" placeholder="Enter your password">
             </div>
             <div class="input-block">
-                <!-- <span>Fill up all fields</span> -->
                 <button class="login__btn" id="login__btn">LOGIN</button>
             </div>
         </div>
@@ -39,10 +39,9 @@
             </span>
             <div class="input-block">
                 <span class="login__text">PIN</span>
-                <input class="login__input" type="text" placeholder="Enter your PIN">
+                <input class="login__input authorization__pin" type="text" placeholder="Enter your PIN">
             </div>
             <div class="input-block">
-                <!-- <span>Fill up all fields</span> -->
                 <button class="login__btn" id="pin__btn">SUBMIT</button>
             </div>
         </div>
@@ -268,27 +267,27 @@
             width="282px" height="193px" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
         <img class="contact-info__img" src="img/head-office.png" alt="img-office">
     </section>
-    <form action="mail.php" method="POST" class="section d-flex form" name="form">
+    <div class="section d-flex form" name="form">
         <div class="form-block">
             <span class="form-block__text">Name</span>
-            <input class="form__input" type="text" name="name" placeholder="Enter your name">
+            <input class="form__input" type="text" placeholder="Enter your name">
         </div>
         <div class="form-block">
             <span class="form-block__text">E-mail</span>
-            <input class="form__input" type="email" name="mail" placeholder="Enter your e-mail">
+            <input class="form__input" type="email" placeholder="Enter your e-mail">
         </div>
         <div class="form-block">
             <span class="form-block__text">Phone</span>
-            <input class="form__input" type="number" name="phone" placeholder="Enter your phone">
+            <input class="form__input" type="number" placeholder="Enter your phone">
         </div>
         <div class="form-block">
             <span class="form-block__text">Message</span>
-            <textarea class="form__textarea" name="textarea" placeholder="Enter your message" noresize></textarea>
+            <textarea class="form__textarea" placeholder="Enter your message" ></textarea>
         </div>
         <div class="form-block">
-            <input class="form__input form__input_submit" type="submit" name="submit" value="SEND">
+            <input class="form__input form__input_submit" type="submit" value="SEND">
         </div>
-    </form>
+    </div>
     <section class="section d-flex block-site-map justify-between" id="map-site">
     <ul class="site-map">
         <li class="site-map__item">

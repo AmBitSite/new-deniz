@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <script src="//code.jivosite.com/widget.js" data-jv-id="nxooD9wLJZ" async></script> -->
+    <title>Account Page</title>
+</head>
+
+<body class="flex-col-v_center">
+    <header class="d-flex justify-between header">
+        <img src="img/logo.png" alt="logo">
+        <div class="d-flex header-block">
+            <span class="header__text_mail" id="client-email">example@mail.com</span>
+            <a href="index.html">
+                <img src="img/logout.png" alt="logout">
+            </a>
+        </div>
+    </header>
+    <div class="menu-tab">
+        <label class="menu-tab__item menu-tab__item_active" for="home">HOME</label>
+        <label class="menu-tab__item" for="account">ACCOUNT DETAILS</label>
+        <label class="menu-tab__item" for="transactions" id ="transactions">TRANSACTIONS</label>
+        <label class="menu-tab__item" for="international-transfer">INTERNATIONAL TRANSFER</label>
+        <label class="menu-tab__item" for="intra-transfer">INTRA TRANSFER</label>
+    </div>
+    <input type="radio" id="home" name="account-tab" class="tab__input" checked>
+<div class="menu-tab-block tab_active">
+    <div class="mb-30 tab-home">
+        <span class="account__main-header">Home</span>
+        <div class="d-flex account-block mb-30">
+            <span class="tab__text_style">Welcome&nbsp;</span>
+            <span class="tab__text_style" id="client-name">Name</span>
+        </div>
+        <div class=" d-flex account-tab">
+            <span class="header__text_main">Euro exchange rate</span>
+            <div class="d-flex justify-between account-tab-wrap">
+                <div class="currency-block crypto-currency">
+                    <span class="cerrency-block__currency-name">BTC</span>
+                    <span class="currency__value">0.0001317</span>
+                </div>
+                <div class="currency-block crypto-currency">
+                    <span class="cerrency-block__currency-name">ETH</span>
+                    <span class="currency__value">0.006813</span>
+                </div>
+                <div class="currency-block crypto-currency">
+                    <span class="cerrency-block__currency-name">BCH</span>
+                    <span class="currency__value">0.003301</span>
+                </div>
+                <div class="currency-block crypto-currency">
+                    <span class="cerrency-block__currency-name">USDT</span>
+                    <span class="currency__value">1.11</span>
+                </div>
+                <div class="currency-block crypto-currency">
+                    <span class="cerrency-block__currency-name">LTC</span>
+                    <span class="currency__value">0.0198</span>
+                </div>
+                <div class="currency-block currency">
+                    <span class="cerrency-block__currency-name">CNY</span>
+                    <span class="currency__value">7.653</span>
+                </div>
+                <div class="currency-block currency">
+                    <span class="cerrency-block__currency-name">CHF</span>
+                    <span class="currency__value">1.0757</span>
+                </div>
+                <div class="currency-block currency">
+                    <span class="cerrency-block__currency-name">GBP</span>
+                    <span class="currency__value">0.84445</span>
+                </div>
+                <div class="currency-block currency">
+                    <span class="cerrency-block__currency-name">USD</span>
+                    <span class="currency__value">1.1088</span>
+                </div>
+                <div class="currency-block currency">
+                    <span class="cerrency-block__currency-name">TRY</span>
+                    <span class="currency__value">6.5673</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="account-table">
+        <div class="account-table-header d-flex">
+            <span class="header__text_main">Message board</span>
+        </div>
+        <div class="d-flex account-table-row-header">
+            <span class="tab__text_style d-flex account-table-row-header__text_w20">
+                Status
+            </span>
+            <span class="tab__text_style d-flex account-table-row-header__text_w40">
+                Subject
+            </span>
+            <span class="tab__text_style d-flex account-table-row-header__text_w40">
+                Received
+            </span>
+        </div>
+        <div class="account-table-row">
+            <span class="account-table-row-column">Record not found</span>
+        </div>
+    </div>
+</div>
+    <input type="radio" id="account" name="account-tab" class="tab__input">
+<div class="menu-tab-block">
+    <div class="mb-30 tab-account-details ">
+        <span class="account__main-header">ACCOUNT DETAILS</span>
+        <div class="account-block mb-30">
+            <span class="tab__text_style">User details</span>
+            <div class="account-table-row account-table-row-account">
+                <span class="account-table-row-column">Client ID:</span>
+                <span class="account-table-row-column account__column-text" id="client_id">0000000000</span>
+            </div>
+            <div class="account-table-row account-table-row-account">
+                <span class="account-table-row-column">Client name:</span>
+                <span class="account-table-row-column account__column-text" id="client_first_name">Client name</span>
+            </div>
+            <div class="account-table-row account-table-row-account">
+                <span class="account-table-row-column">Client last name:</span>
+                <span class="account-table-row-column account__column-text" id="client_last_name">Client last name</span>
+            </div>
+            <div class="account-table-row account-table-row-account">
+                <span class="account-table-row-column">Company name:</span>
+                <span class="account-table-row-column account__column-text" id="company_name">Company name</span>
+            </div>
+            <div class="account-table-row account-table-row-account">
+                <span class="account-table-row-column">E-mail adress:</span>
+                <span class="account-table-row-column account__column-text" id="email">example@mail.com</span>
+            </div>
+        </div>
+    </div>
+    <div class="account-table" id="account-invoice">
+        <div class="account-table-header d-flex">
+            <span class="header__text_main">Account details</span>
+        </div>
+        <div class="d-flex account-table-row-header">
+            <span class="tab__text_style d-flex account-details__column_w218">
+                Account Number
+            </span>
+            <span class="tab__text_style d-flex account-details__column_w208">
+                Account Type
+            </span>
+            <span class="tab__text_style d-flex account-details__column_w108">
+                Currency
+            </span>
+            <span class="tab__text_style d-flex account-details__column_w115">
+                Status
+            </span>
+            <span class="tab__text_style d-flex account-details__column_w126">
+                Balance
+            </span>
+            <span class="tab__text_style d-flex account-details__column">
+                Minimum Balance
+            </span>
+        </div>
+    </div>
+</div>
+    <input type="radio" id="transactions" name="account-tab" class="tab__input">
+<div class="menu-tab-block ">
+    <div class="mb-30 tab-account-details">
+        <span class="account__main-header">TRANSACTIONS</span>
+    </div>
+    <div class="account-table mb-100" id="transactions-table">
+        <div class="account-table-header d-flex transaction-date-block">
+            <div class="transaction-date transaction-date-relative d-flex">
+                <span class="transaction-date__text">Filter by the account</span>
+                <ul class="transaction-date-wrap transaction-date-wrap-absolute" id="transaction-date-wrap">
+                    <li class="transaction-date-wrap__item">
+                        <span>All accounts</span>
+                        <img class="transaction-date-wrap__img" id="statistic-wrap-img" src="img/arrow.png" alt="arrow">
+                    </li>
+                </ul>
+            </div>
+            <div class="transaction-date d-flex">
+                <span class="transaction-date__text">From date</span>
+                <input class="transaction-date__input" type="text" placeholder="DD.MM.YEAR">
+            </div>
+            <div class="transaction-date d-flex">
+                <span class="transaction-date__text">To date</span>
+                <input class="transaction-date__input" type="text" placeholder="DD.MM.YEAR">
+            </div>
+            <button class="transaction-date__submit">SUBMIT</button>
+        </div>
+        <div class="d-flex account-table-row-header" >
+            <span class="tab__text_style d-flex account-table-row-column_w89">
+                Date
+            </span>
+            <span class="tab__text_style d-flex account-table-row-column_171">
+                Transfer type
+            </span>
+            <span class="tab__text_style d-flex account-table-row-column_140">
+                Sender
+            </span>
+            <span class="tab__text_style d-flex account-table-row-column_w143">
+                Beneficiary
+            </span>
+            <span class="tab__text_style d-flex account-table-row-column_w141">
+                Transaction Number
+            </span>
+            <span class="tab__text_style d-flex account-table-row-column_w98">
+                Amount
+            </span>
+            <span class="tab__text_style d-flex account-table-row-column_w96">
+                Status
+            </span>
+            <span class="tab__text_style d-flex account-table-row-column_w76">
+                Balance
+            </span>
+        </div>
+    </div>
+</div>
+    <input type="radio" id="international-transfer" name="account-tab" class="tab__input">
+<div class="menu-tab-block">
+    <div class="mb-30 tab-account-details transfer-block">
+        <span class="account__main-header">INTERNATIONAL TRANSFER</span>
+        <span  class="transfer__main-text">Payment instructions will be processed within the same date of request, if made before 13:00 (GMT +02:00).
+        </span>
+        <span class="transfer__main-text">Transfer may take up to 3 business days to reach the beneficiary. Be sure to double check your account
+            number(s)  and details carefully. All Bank details are encrypted.</span>
+    </div>
+    <div class="account-table">
+        <div class="account-table-header d-flex">
+            <span class="header__text_main">Payment details</span>
+        </div>
+        <div class="d-flex transfer-wrap-field">
+            <div class="transfer-input-block-1st transfer-date-relative d-flex">
+                <span class="transfer-input__text">Account Number</span>
+                <ul class="transfer-account-wrap transfer-date-wrap-absolute" id="international-date-wrap">
+                    <li class="transfer-account-wrap__item d-flex">
+                        <span id="transfer-account-number">All accounts</span>
+                        <img class="transfer-account-wrap__img" id="international-wrap-img" src="img/arrow.png" alt="arrow">
+                    </li>
+                </ul>
+            </div>
+            <div class="transfer-input-block d-flex">
+                <span class="transfer-input__text">Amount</span>
+                <input type="text" class="transfer__input">
+            </div>
+            <div class="transfer-input-block d-flex">
+                <span class="transfer-input__text">Bank Name</span>
+                <input type="text" class="transfer__input">
+            </div>
+            <div class="transfer-input-block d-flex">
+                <span class="transfer-input__text">Bank Address</span>
+                <input type="text" class="transfer__input">
+            </div>
+            <div class="transfer-input-block d-flex">
+                <span class="transfer-input__text">SWIFT Code</span>
+                <input type="text" class="transfer__input">
+            </div>
+            <div class="transfer-input-block d-flex">
+                <span class="transfer-input__text">IBAN/Beneficiary Account Number</span>
+                <input type="text" class="transfer__input">
+            </div>
+            <div class="transfer-input-block d-flex">
+                <span class="transfer-input__text">Beneficiary Country</span>
+                <input type="text" class="transfer__input">
+            </div>
+            <div class="transfer-input-block d-flex">
+                <span class="transfer-input__text">Beneficiary City</span>
+                <input type="text" class="transfer__input">
+            </div>
+            <div class="transfer-input-block d-flex">
+                <span class="transfer-input__text">Beneficiary Address</span>
+                <input type="text" class="transfer__input">
+            </div>
+            <div class="transfer-input-block d-flex">
+                <span class="transfer-input__text">Beneficiary Reference</span>
+                <input type="text" class="transfer__input">
+            </div>
+            <div class="transfer-input-block d-flex">
+                <span class="transfer-input__text">Beneficiary Name</span>
+                <input type="text" class="transfer__input">
+            </div>
+        </div>
+        <div class="transfer-wrap-field mb-100">
+            <span class="transfer-pay-charges-block__text mb-10 d-flex">Who will pay the charges:</span>
+            <div class="transfer-pay-charges">
+                <input type="radio" name="will-pay" id="pay-sender" value="Sender to pay all charges (OUR)" class="d-none transfer-pay-charges__input">
+                <label for="pay-sender" class="transfer-pay-charges-label">
+                    <div class="transfer-pay-charges-block d-flex">
+                        <div class="transfer-pay-charges-block_active"></div>
+                    </div>
+                    <span class="transfer-pay-charges-block__text">Sender to pay all charges (OUR)</span>
+                </label>
+            </div>
+            <div class="transfer-pay-charges">
+                <input type="radio" name="will-pay" id="pay-beneficiary" value="Beneficiary to pay all charges (BEN)" class="d-none transfer-pay-charges__input">
+                <label for="pay-beneficiary" class="transfer-pay-charges-label">
+                    <div class="transfer-pay-charges-block d-flex">
+                        <div class="transfer-pay-charges-block_active"></div>
+                    </div>
+                    <span class="transfer-pay-charges-block__text">Beneficiary to pay all charges (BEN)</span>
+                </label>
+            </div>
+            <div class="transfer-pay-charges">
+                <input type="radio" name="will-pay" id="pay-Shared" value="Shared (SHA)" class="d-none transfer-pay-charges__input">
+                <label for="pay-Shared" class="transfer-pay-charges-label">
+                    <div class="transfer-pay-charges-block d-flex">
+                        <div class="transfer-pay-charges-block_active"></div>
+                    </div>
+                    <span class="transfer-pay-charges-block__text">Shared (SHA)</span>
+                </label>
+            </div>
+            <div class="transfer-btn-block">
+                <input type="checkbox" id="transfer-btn__input" class="d-none">
+                <label for="transfer-btn__input" class="transfer-btn-label d-flex mb-10">
+                    <div class="transfer-btn-check d-flex">
+                        <div class="transfer-btn-check_active"></div>
+                    </div>
+                    <span class="transfer-pay-charges-block__text">I agree with EURO Deniz IBU Terms and Conditions</span>
+                </label>
+                <button class="transfer__btn">SEND</button>
+            </div>
+        </div>
+    </div>
+</div>
+    <input type="radio" id="intra-transfer" name="account-tab" class="tab__input">
+<div class="menu-tab-block">
+    <div class="mb-30 tab-account-details ">
+        <span class="account__main-header">INTRA TRANSFER</span>
+        <div>
+            <div class="account-table">
+                <div class="account-table-header d-flex">
+                    <span class="header__text_main">Convert currency - enter transfer information</span>
+                </div>
+                <div class="d-flex transfer-wrap-field">
+                    <div class="intra-input-block transfer-date-relative d-flex">
+                        <span class="transfer-input__text">From account number</span>
+                        <ul class="transfer-account-wrap transfer-date-wrap-absolute" id="intra-date-wrap">
+                            <li class="transfer-account-wrap__item d-flex">
+                                <span id="intra-account">All accounts</span>
+                                <img class="transfer-account-wrap__img" id="intra-wrap-img" src="img/arrow.png" alt="arrow">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="intra-input-block transfer-date-relative d-flex">
+                        <span class="transfer-input__text" >To account number</span>
+                        <ul class="transfer-account-wrap transfer-date-wrap-absolute" id="intra-date-wrap-to">
+                            <li class="transfer-account-wrap__item d-flex">
+                                <span id="intra-to-account">All accounts</span>
+                                <img class="transfer-account-wrap__img" id="intra-wrap-img-to" src="img/arrow.png" alt="arrow">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="intra-input-block d-flex">
+                        <span class="transfer-input__text">Amount</span>
+                        <input type="number" step="0.000001" class="transfer__input" id="intra-amount_input">
+                    </div>
+                    <div class="intra-input-block d-flex">
+                        <span class="transfer-input__text">Reference</span>
+                        <input type="text" class="transfer__input" id="intra-reference_input">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="intra-wrap-field mb-100">
+            <div class="intra-btn-block">
+                <input type="checkbox" id="intra-btn__input" class="d-none">
+                <label for="intra-btn__input" class="intra-btn-label d-flex mb-10">
+                    <div class="intra-btn-check d-flex">
+                        <div class="intra-btn-check_active"></div>
+                    </div>
+                    <span class="intra-pay-charges-block__text">I agree with EURO Deniz IBU Terms and
+                        Conditions</span>
+                </label>
+                <button class="intra__btn" >SEND</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -8,6 +8,7 @@
     <link rel="icon" href="img/favicon.png" type="image/png">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,500,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="//code.jivosite.com/widget.js" data-jv-id="nxooD9wLJZ" async></script>
     <title>Online Bank Account Request</title>
 </head>
 
@@ -16,20 +17,19 @@
     <div class="login">
         <img class="login__btn-close" src="img/close.png" alt="">
         <img class="login__logo" src="img/logo.png" alt="">
-        <div class="authorization ">
+        <div class="authorization">
             <span class="login__header">
                 To enter online banking write your ID and password
             </span>
             <div class="input-block">
                 <span class="login__text">Login</span>
-                <input class="login__input" type="text" placeholder="Enter your login">
+                <input class="login__input authorization__login" type="text" placeholder="Enter your login">
             </div>
             <div class="input-block">
                 <span class="login__text">Password</span>
-                <input class="login__input" type="password" placeholder="Enter your password">
+                <input class="login__input authorization__password" type="password" placeholder="Enter your password">
             </div>
             <div class="input-block">
-                <!-- <span>Fill up all fields</span> -->
                 <button class="login__btn" id="login__btn">LOGIN</button>
             </div>
         </div>
@@ -39,10 +39,9 @@
             </span>
             <div class="input-block">
                 <span class="login__text">PIN</span>
-                <input class="login__input" type="text" placeholder="Enter your PIN">
+                <input class="login__input authorization__pin" type="text" placeholder="Enter your PIN">
             </div>
             <div class="input-block">
-                <!-- <span>Fill up all fields</span> -->
                 <button class="login__btn" id="pin__btn">SUBMIT</button>
             </div>
         </div>
@@ -222,56 +221,59 @@
         </ul>
     </section>
     <section class="section d-flex">
-        <form action="online.php" method="POST" class="online-form">
+        <div class="online-form">
             <h2 class="block-info__header mb-10">Application Form</h2>
             <span class="block-info__text mb-10">To apply for Bank Account, please fill in the application form below.</span>
             <div class="online-form-input-block">
                 <div class="online-form-block">
                     <span class="form-block__text">First Name</span>
-                    <input type="text" class="form__input form__input_w318" placeholder="Enter your first name">
+                    <input type="text" class="form__input form__input_w318" pattern="[A-Za-zА-Яа-яЁё]" placeholder="Enter your first name">
                 </div>
                 <div class="online-form-block">
                     <span class="form-block__text">Last Name</span>
-                    <input type="text" class="form__input form__input_w318" placeholder="Enter your last name">
+                    <input type="text" class="form__input form__input_w318" pattern="[A-Za-zА-Яа-яЁё]" placeholder="Enter your last name">
                 </div>
                 <div class="online-form-block">
                     <span class="form-block__text">Country</span>
-                    <input type="text" class="form__input form__input_w318" placeholder="Enter your country">
+                    <input type="text" class="form__input form__input_w318" pattern="[A-Za-zА-Яа-яЁё]" placeholder="Enter your country">
                 </div>
                 <div class="online-form-block">
                     <span class="form-block__text">City</span>
-                    <input type="text" class="form__input form__input_w318" placeholder="Enter your city">
+                    <input type="text" class="form__input form__input_w318" pattern="[A-Za-zА-Яа-яЁё]" placeholder="Enter your city">
                 </div>
                 <div class="online-form-block">
                     <span class="form-block__text">Address</span>
-                    <input type="text" class="form__input form__input_w318" placeholder="Enter your address">
+                    <input type="text" class="form__input form__input_w318" pattern="[A-Za-zА-Яа-яЁё\s]" placeholder="Enter your address">
                 </div>
                 <div class="online-form-block">
                     <span class="form-block__text">Post Code</span>
-                    <input type="text" class="form__input form__input_w318" placeholder="Enter your post code">
+                    <input type="text" class="form__input form__input_w318" pattern="[0-9]{5,15}" placeholder="Enter your post code">
                 </div>
                 <div class="online-form-block">
                     <span class="form-block__text">Telephone Number</span>
-                    <input type="text" class="form__input form__input_w318" placeholder="+1234567890">
+                    <input type="text" class="form__input form__input_w318" pattern="[0-9]{5,15}" placeholder="+1234567890">
                 </div>
                 <div class="online-form-block">
                     <span class="form-block__text">E-mail</span>
-                    <input type="text" class="form__input form__input_w318" placeholder="example@mail.com">
+                    <input type="text" class="form__input form__input_w318"
+                    pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,5}$" placeholder="example@mail.com">
                 </div>
                 <div class="online-form-block">
                     <span class="form-block__text">Password</span>
-                    <input type="text" class="form__input form__input_w318" placeholder="Type from 8 to 16 symbols">
+                    <input type="text" class="form__input form__input_w318" id="input-password"
+                    pattern="[a-z0-9]{8,16}" placeholder="Type from 8 to 16 symbols">
                 </div>
                 <div class="online-form-block">
                     <span class="form-block__text">Confirm password</span>
-                    <input type="text" class="form__input form__input_w318" placeholder="Type from 8 to 16 symbols">
+                    <input type="text" class="form__input form__input_w318" id="input-confirm-password"
+                    pattern="[a-z0-9]{8,16}" placeholder="Type from 8 to 16 symbols">
                 </div>
                 <div class="online-form-block">
-                    <span class="form-block__text">Mistake example</span>
+                    <!-- <span class="form-block__text">Mistake example</span> -->
                     <input type="submit" class="form__input form__input_w318 online-form__input_submit" value="ACCOUNT OPENING">
                 </div>
             </div>
-        </form>
+        </div>
     </section>
     <section class="section d-flex block-site-map justify-between" id="map-site">
     <ul class="site-map">
