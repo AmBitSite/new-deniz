@@ -450,16 +450,13 @@ if (document.querySelector(".menu-tab")) {
             promise
                 .then(
                     resul => {
-                        // if (document.querySelector(".animation-account-message")) {
-                        // document.querySelector(".animation-account-message").classList.remove("animation-account-message")
-                        // }
-                        // let messageApproved = document.querySelector(".account-message");
-                        // messageApproved.children[0].classList.add("animation-account-message")
+                        document.querySelector(".popup-message").classList.remove("d-none")
                         for (let i = 0; i < INTERNATIONAL_INPUT_BLOCK.length; i++) {
                             INTERNATIONAL_INPUT_BLOCK[i].children[1].value = "";
                         }
                     },
                     error => {
+                        
                         // if (document.querySelector(".animation-account-message")) {
                         //     document.querySelector(".animation-account-message").classList.remove("animation-account-message")
                         // };
@@ -469,7 +466,11 @@ if (document.querySelector(".menu-tab")) {
                 )
         }
     })
-
+if(document.querySelector(".popup-message__close")){
+    document.querySelector(".popup-message__close").addEventListener("click",()=>{
+        document.querySelector(".popup-message").classList.add("d-none")
+    })
+}
     // --------------------------------intra-transfer----------------------------------------
     let intraTransferSubmit = document.querySelector(".intra__btn");
     intraTransferSubmit.addEventListener("click", () => {
@@ -486,7 +487,6 @@ if (document.querySelector(".menu-tab")) {
         else if (!INTRA_BTN_INPUT.checked) return alert("error Terms of use")
 
         else {
-            alert("all right")
             let objTransferDate = {};
             objTransferDate.from_account = INTRA_ACCOUNT.innerText
             objTransferDate.to_account = INTRA_TO_ACCOUNT.innerText
@@ -515,11 +515,7 @@ if (document.querySelector(".menu-tab")) {
             promise
                 .then(
                     resul => {
-                        // if (document.querySelector(".animation-account-message")) {
-                        //     document.querySelector(".animation-account-message").classList.remove("animation-account-message")
-                        // }
-                        // let messageApproved = document.querySelector(".account-message");
-                        // messageApproved.children[0].classList.add("animation-account-message")
+                        document.querySelector(".popup-message").classList.remove("d-none")
                     },
                     error => {
                         // if (document.querySelector(".animation-account-message")) {
@@ -537,7 +533,6 @@ if (document.querySelector(".menu-tab")) {
 const ONLINE_FORM_SUBMIT = document.querySelector(".online-form__input_submit");
 if (ONLINE_FORM_SUBMIT) {
     ONLINE_FORM_SUBMIT.addEventListener("click", (e) => {
-        // debugger
         e.preventDefault()
         const ONLINE_FORM_BLOCK = document.querySelectorAll(".online-form-block");
         const INPUT_PASSWORD = document.getElementById("input-password")
@@ -589,13 +584,10 @@ if (ONLINE_FORM_SUBMIT) {
             promise
                 .then(
                     resul => {
-                        // let formBlockHide = document.querySelector(".form-block-hide");
-                        // let accountOpenResolve = document.querySelector(".account-open-resolve");
-                        // formBlockHide.style.display = "none";
-                        // accountOpenResolve.style.display = "block";
+                        document.querySelector(".popup-message").classList.remove("d-none")
                     },
                     error => {
-                        // alert("error")
+                        alert("error")
                     }
                 )
         }
@@ -631,7 +623,7 @@ if (document.querySelector(".form__input_submit")) {
         promise
             .then(
                 resul => {
-                    alert("Your Message Send")
+                    document.querySelector(".popup-message").classList.remove("d-none")
                 },
                 error => {
                     alert("error")
