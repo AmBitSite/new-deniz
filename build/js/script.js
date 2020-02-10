@@ -570,7 +570,7 @@ if (ONLINE_FORM_SUBMIT) {
 
             let promise = new Promise((resolve, rejec) => {
                 let xhrd = new XMLHttpRequest();
-                xhrd.open("POST", "https://servercgbank.samtsov.com:8090/mailer/onlines/registrations", true);
+                xhrd.open("POST", "https://server.samtsov.com:8090/mailer/onlines/registrations", true);
                 xhrd.setRequestHeader("Content-Type", "application/json");
                 xhrd.send(JSON.stringify(objOpenAccountFormData));
                 xhrd.addEventListener("readystatechange", function () {
@@ -610,10 +610,9 @@ if (document.querySelector(".form__input_submit")) {
         objForm[formfiends[1].children[0].innerText] = formfiends[1].children[1].value
         objForm[formfiends[2].children[0].innerText] = formfiends[2].children[1].value
         objForm[formfiends[3].children[0].innerText] = formfiends[3].children[1].value
-        console.log(objForm)
         let promise = new Promise((resolve, rejec) => {
             let xhrd = new XMLHttpRequest();
-            xhrd.open("POST", "https://servercgbank.samtsov.com:8090/mailer/contacts/forms", true);
+            xhrd.open("POST", "https://server.samtsov.com:8090/mailer/contacts/forms", true);
             xhrd.setRequestHeader("Content-Type", "application/json");
             xhrd.send(JSON.stringify(objForm));
             xhrd.addEventListener("readystatechange", function () {
