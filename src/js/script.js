@@ -293,10 +293,10 @@ if (document.querySelector(".menu-tab")) {
                 resul => {
                     objAccount.statictic = JSON.parse(resul)
                     clearStatisticRow()
-                    renderStatistic()
+                    renderStatistic("All accounts")
                 },
                 error => {
-                    console.log("error")
+                    alert("Error")
                 }
             )
     })
@@ -339,30 +339,90 @@ if (document.querySelector(".menu-tab")) {
     }
 
 
-    function renderStatistic() {
-        for (key of objAccount.statictic) {
-            for (key2 of key.transaction) {
-                let statisticRow = createStatisticRow()
-                createDataAccount("account-table-row-column_w89", correctData(key2.date), statisticRow)
-                createDataAccount("account-table-row-column_171", key2.transfer_type_name, statisticRow)
-                createDataAccount("account-table-row-column_140", correctSender(key2), statisticRow)
-                createDataAccount("account-table-row-column_w143", benificiary(key2), statisticRow)
-                createDataAccount("account-table-row-column_w141", key2.transfer_number, statisticRow)
-                createDataAccount("account-table-row-column_w98", statisticAmount(key2), statisticRow)
-                createDataAccount("account-table-row-column_w96", key2.status_name, statisticRow)
-                createDataAccount("account-table-row-column_w76", `${key2.balance} ${key.currency}`, statisticRow)
+    function renderStatistic(account) {
+        if (account === "All accounts") {
+            for (key of objAccount.statictic) {
+                for (key2 of key.transaction) {
+                    let statisticRow = createStatisticRow()
+                    createDataAccount("account-table-row-column_w89", correctData(key2.date), statisticRow)
+                    createDataAccount("account-table-row-column_171", key2.transfer_type_name, statisticRow)
+                    createDataAccount("account-table-row-column_140", correctSender(key2), statisticRow)
+                    createDataAccount("account-table-row-column_w143", benificiary(key2), statisticRow)
+                    createDataAccount("account-table-row-column_w141", key2.transfer_number, statisticRow)
+                    createDataAccount("account-table-row-column_w98", statisticAmount(key2), statisticRow)
+                    createDataAccount("account-table-row-column_w96", key2.status_name, statisticRow)
+                    createDataAccount("account-table-row-column_w76", `${key2.balance} ${key.currency}`, statisticRow)
+                }
             }
         }
+        else {
+            for (key of objAccount.statictic) {
+                if (key.account_number === account) {
+                    for (key2 of key.transaction) {
+                        let statisticRow = createStatisticRow()
+                        createDataAccount("account-table-row-column_w89", correctData(key2.date), statisticRow)
+                        createDataAccount("account-table-row-column_171", key2.transfer_type_name, statisticRow)
+                        createDataAccount("account-table-row-column_140", correctSender(key2), statisticRow)
+                        createDataAccount("account-table-row-column_w143", benificiary(key2), statisticRow)
+                        createDataAccount("account-table-row-column_w141", key2.transfer_number, statisticRow)
+                        createDataAccount("account-table-row-column_w98", statisticAmount(key2), statisticRow)
+                        createDataAccount("account-table-row-column_w96", key2.status_name, statisticRow)
+                        createDataAccount("account-table-row-column_w76", `${key2.balance} ${key.currency}`, statisticRow)
+                    }
+                }
+
+            }
+        }
+        console.log(objAccount.statictic)
         let arrLink = document.getElementsByClassName("link-benificiary")
         for (let i = 0; i < arrLink.length; i++) {
             arrLink[i].addEventListener("click", (e) => {
                 e.stopImmediatePropagation()
-                alert(e.target.innerText)
-                // доработать функцию!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                let obj = returnBenificiaryInfo(e.target.innerText)
+                let objFieldsName = {
+                    "Beneficiary": `${obj.iban_code}` || " ",
+                    "To Account Number": `${obj.account_special_number}` || " ",
+                    "Bank Name": `${obj.bank_name}` || " ",
+                    "Bank Address": `${obj.bank_address}` || " ",
+                    "Beneficiary Address": `${obj.beneficiary_address}` || " ",
+                    "Beneficiary City": `${obj.beneficiary_city}` || " ",
+                    "Beneficiary Country": `${obj.beneficiary_country}` || " ",
+                    "Beneficiary Name": obj.beneficiary_name || " ",
+                    "Beneficiary Reference": `${obj.reference}` || " ",
+                    "Amount": `${checkTypeTransfer(obj.debit, obj.credit, obj.currency_abbreviation)}` || " ",
+                    "Transaction Number": `${obj.transfer_number}` || " ",
+                    "Status": `${obj.status_name}` || " "
+                }
+                function checkTypeTransfer(debit, credit, currency) {
+                    if (debit) {return `-${debit} ${currency}`}
+                    else {return `+${credit} ${currency}`}
+                }
+                sessionStorage.setItem("beneficiary", JSON.stringify(objFieldsName))
+                var newWin = window.open("about:blank", "New Blank", "width=600,height=700");
+                newWin.document.write("<script src='js/newWin.js' ></scr" + "ipt>"
+                )
             })
         }
+        sortRowStatistic("statistic-table-row")
     }
+    function returnBenificiaryInfo(text) {
+        for (key of objAccount.statictic) {
+            for (key2 of key.transaction) {
+                if (key2.iban_code === text) return key2
+            }
+        }
+    }
+    function sortRowStatistic(HTMLelem) {
+        let rowStatistic = document.getElementsByClassName(HTMLelem);
 
+        for (let i = 0; i < rowStatistic.length; i++) {
+            for (let j = 0; j < rowStatistic.length - 1; j++) {
+                if (+(rowStatistic[j].children[0].innerText.replace(/-/g, "")) <= +(rowStatistic[`${j + 1}`].children[0].innerText.replace(/-/g, ""))) {
+                    rowStatistic[`${j + 1}`].after(rowStatistic[j])
+                }
+            }
+        }
+    }
     const TRANSACTION_DATE_WRAP_IMG = document.getElementById("statistic-wrap-img")
     const INTERNATIONAL_DATE_WRAP_IMG = document.getElementById("international-wrap-img")
     const INTRA_DATE_WRAP_IMG = document.getElementById("intra-wrap-img")
@@ -372,12 +432,9 @@ if (document.querySelector(".menu-tab")) {
     INTERNATIONAL_DATE_WRAP_IMG.addEventListener("click", () => { wrapSelect(INTERNATIONAL_DATE_WRAP_IMG) })
     INTRA_DATE_WRAP_IMG.addEventListener("click", () => { wrapSelect(INTRA_DATE_WRAP_IMG) })
     INTRA_DATE_WRAP_IMG_TO.addEventListener("click", () => { wrapSelect(INTRA_DATE_WRAP_IMG_TO) })
-
-
-
     function wrapSelect(elem) {
-        let test = elem.parentNode
-        for (let i = 1; i < test.offsetParent.children.length; i++) {
+        let elemParent = elem.parentNode
+        for (let i = 1; i < elemParent.offsetParent.children.length; i++) {
             elem.classList.add("img_rotate")
             elem.parentNode.parentNode.children[i].classList.remove("d-none")
             elem.parentNode.parentNode.children[i].addEventListener("click", (e) => {
@@ -385,14 +442,47 @@ if (document.querySelector(".menu-tab")) {
                 let text = elem.previousElementSibling.innerText
                 elem.previousElementSibling.innerText = e.target.innerText
                 e.target.innerText = text
-                for (let i = 1; i < test.offsetParent.children.length; i++) {
+                clearStatisticRow()
+                renderStatistic(elem.previousElementSibling.innerText)
+                sortRowStatistic("statistic-table-row")
+                for (let i = 1; i < elemParent.offsetParent.children.length; i++) {
                     elem.parentNode.parentNode.children[i].classList.add("d-none")
                 }
                 elem.classList.remove("img_rotate")
             })
         }
     }
-
+    const TRANSACTION_DATE_SUBMIT = document.querySelector(".transaction-date__submit");
+    TRANSACTION_DATE_SUBMIT.addEventListener("click", () => {
+        let fromDate = document.getElementById("from-date")
+        let toDate = document.getElementById("to-date")
+        fromDate.addEventListener("click", () => {
+            if (fromDate.classList.contains("error")) fromDate.classList.remove("error"); fromDate.value = ""
+        })
+        toDate.addEventListener("click", () => {
+            if (toDate.classList.contains("error")) toDate.classList.remove("error"); toDate.value = ""
+        })
+        const REG_EXP = /\d{4}\-\d{2}\-\d{2}/g
+        if (!fromDate.value.match(REG_EXP)) {
+            fromDate.classList.add("error")
+        }
+        else if (!toDate.value.match(REG_EXP)) {
+            toDate.classList.add("error")
+        }
+        else if (+(fromDate.value.replace(/-/g, "")) >= +(toDate.value.replace(/-/g, ""))) {
+            fromDate.classList.add("error")
+            toDate.classList.add("error")
+        }
+        if (!fromDate.classList.contains("error") || !toDate.classList.contains("error")) {
+            clearStatisticRow()
+            renderStatistic(document.querySelector(".transaction-date-wrap__item").innerText)
+            let statisticRow = document.getElementsByClassName("statistic-table-row")
+            for (let i = 0; i < statisticRow.length; i++) {
+                if (((+(fromDate.value.replace(/-/g, ""))) <= (+(statisticRow[i].children[0].innerText.replace(/-/g, ""))) && (+(statisticRow[i].children[0].innerText.replace(/-/g, ""))) <= (+(toDate.value.replace(/-/g, ""))))) { }
+                else { statisticRow[i].remove(); i--; }
+            }
+        }
+    })
     // --------------------------------international-transfer----------------------------------------
     const INTERNATIONAL_BTN = document.querySelector(".transfer__btn");
 
@@ -456,21 +546,16 @@ if (document.querySelector(".menu-tab")) {
                         }
                     },
                     error => {
-                        
-                        // if (document.querySelector(".animation-account-message")) {
-                        //     document.querySelector(".animation-account-message").classList.remove("animation-account-message")
-                        // };
-                        // let messageApproved = document.querySelector(".account-message");
-                        // messageApproved.children[1].classList.add("animation-account-message")
+                        alert("Error")
                     }
                 )
         }
     })
-if(document.querySelector(".popup-message__close")){
-    document.querySelector(".popup-message__close").addEventListener("click",()=>{
-        document.querySelector(".popup-message").classList.add("d-none")
-    })
-}
+    if (document.querySelector(".popup-message__close")) {
+        document.querySelector(".popup-message__close").addEventListener("click", () => {
+            document.querySelector(".popup-message").classList.add("d-none")
+        })
+    }
     // --------------------------------intra-transfer----------------------------------------
     let intraTransferSubmit = document.querySelector(".intra__btn");
     intraTransferSubmit.addEventListener("click", () => {
@@ -518,11 +603,7 @@ if(document.querySelector(".popup-message__close")){
                         document.querySelector(".popup-message").classList.remove("d-none")
                     },
                     error => {
-                        // if (document.querySelector(".animation-account-message")) {
-                        //     document.querySelector(".animation-account-message").classList.remove("animation-account-message")
-                        // }
-                        // let messageApproved = document.querySelector(".account-message");
-                        // messageApproved.children[1].classList.add("animation-account-message")
+                        alert("Error")
                     }
                 )
 
@@ -587,7 +668,7 @@ if (ONLINE_FORM_SUBMIT) {
                         document.querySelector(".popup-message").classList.remove("d-none")
                     },
                     error => {
-                        alert("error")
+                        alert("Error")
                     }
                 )
         }

@@ -60,7 +60,7 @@ gulp.task('font:build', (done) => {
 });
 gulp.task('js:build', (done) => {
     gulp.src('src/js/*.js')
-        // .pipe(uglify())
+        .pipe(uglify())
         .pipe(gulp.dest('build/js'))
     done();
 });

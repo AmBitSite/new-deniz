@@ -1,0 +1,12 @@
+@media (max-width:1000px) {
+    body{
+        min-width: 994px;
+        
+    }
+}
+@media print{
+    .no-print{
+        display: none;
+    }
+    
+}

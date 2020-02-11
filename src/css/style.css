@@ -795,7 +795,9 @@ h1, h2, h3 {
 .login__logo {
     margin-bottom: 70px;
 }
-
+.img__logo{
+    object-fit: contain;
+}
 .authorization {
     display: flex;
     flex-direction: column;
