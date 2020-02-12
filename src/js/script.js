@@ -39,7 +39,7 @@ if (sliderParent) {
             }
         }
     }
-    setInterval(runSlider, 5000)
+    // setInterval(runSlider, 5000)
 }
 // -----------------------------currency rate--------------------------------
 const CURRENCY = document.getElementsByClassName("currency")
@@ -551,11 +551,7 @@ if (document.querySelector(".menu-tab")) {
                 )
         }
     })
-    if (document.querySelector(".popup-message__close")) {
-        document.querySelector(".popup-message__close").addEventListener("click", () => {
-            document.querySelector(".popup-message").classList.add("d-none")
-        })
-    }
+    
     // --------------------------------intra-transfer----------------------------------------
     let intraTransferSubmit = document.querySelector(".intra__btn");
     intraTransferSubmit.addEventListener("click", () => {
@@ -610,7 +606,11 @@ if (document.querySelector(".menu-tab")) {
         }
     })
 }
-
+if (document.getElementById("popup-message__close")) {
+    document.getElementById("popup-message__close").addEventListener("click", () => {
+        document.querySelector(".popup-message").classList.add("d-none")
+    })
+}
 const ONLINE_FORM_SUBMIT = document.querySelector(".online-form__input_submit");
 if (ONLINE_FORM_SUBMIT) {
     ONLINE_FORM_SUBMIT.addEventListener("click", (e) => {
