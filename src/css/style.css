@@ -377,6 +377,7 @@ h1, h2, h3 {
     font-size: 16px;
     line-height: 150%;
     color: #242424cc;
+    width: 100%;
 }
 
 .block-info__link {
@@ -839,7 +840,8 @@ h1, h2, h3 {
     display: -webkit-box;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 20px
+    margin-top: 20px;
+    width:100%;
 }
 
 .online-form-block {
