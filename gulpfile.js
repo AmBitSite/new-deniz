@@ -3,7 +3,9 @@ var gulp = require('gulp'),
     fileinclude = require('gulp-file-include'),
     uglify = require('gulp-uglify-es').default,
     imagemin = require('gulp-imagemin'),
-    browserSync = require('browser-sync').create();
+    browserSync = require('browser-sync').create(),
+    babel = require('gulp-babel'),
+    sourcemaps = require('gulp-sourcemaps')
 
 gulp.task('html:build', (done) => {
     gulp.src('src/*.html')
@@ -60,7 +62,12 @@ gulp.task('font:build', (done) => {
 });
 gulp.task('js:build', (done) => {
     gulp.src('src/js/*.js')
+        .pipe(sourcemaps.init())
+        .pipe(babel({
+            presets: ['@babel/preset-env']
+        }))
         .pipe(uglify())
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('build/js'))
     done();
 });
