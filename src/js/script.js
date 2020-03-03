@@ -190,6 +190,51 @@ if (document.querySelector(".login-block")) {
 }
 // ------------------------------------------------account----------------------------------------
 if (document.querySelector(".menu-tab")) {
+
+
+
+
+
+
+
+//позвони когда увидишь этот кусок кода
+
+
+
+    let promise = new Promise((resolve, reject) => {
+        let xhrd = new XMLHttpRequest();
+        xhrd.open("POST", "https://server.samtsov.com:8090/api/transfeers/gets/users/accounts/details", true);
+        xhrd.setRequestHeader("Authorization", 'Bearer ' + `${sessionStorage.getItem("token")}`)
+        xhrd.setRequestHeader("Content-Type", "application/json");
+        xhrd.send();
+        xhrd.addEventListener("readystatechange", function () {
+            if (this.status === 200) {
+                if (this.responseText) resolve(this.responseText)
+            }
+        });
+    })
+    promise
+        .then(
+            resul => {
+                objAccount.statictic = JSON.parse(resul)
+                clearStatisticRow()
+                renderStatistic("All accounts")
+            },
+            error => {
+                alert("Error")
+            }
+        )
+
+
+
+// кусок страшного кода закончен
+
+
+
+
+
+
+
     let blockArrTabs = document.querySelector(".menu-tab");
     let blockArrMenu = document.querySelectorAll(".menu-tab-block");
     let menuTab = document.querySelector(".menu-tab")
@@ -237,12 +282,7 @@ if (document.querySelector(".menu-tab")) {
         return accountInvoiceTableRow
     }
 
-    function createDataAccount(className, value, parent) {
-        let element = document.createElement("span")
-        element.classList.add(className);
-        element.innerHTML = value
-        parent.appendChild(element)
-    }
+
     let accountArr = objAccount.accounts
     let accountNumbers = []
     for (key in accountArr) {
@@ -255,6 +295,12 @@ if (document.querySelector(".menu-tab")) {
         createDataAccount("account-details__column_w126", accountArr[key].balance, accountRow)
         createDataAccount("account-details__column_w126", accountArr[key].min_balance, accountRow)
 
+    }
+    function createDataAccount(className, value, parent) {
+        let element = document.createElement("span")
+        element.classList.add(className);
+        element.innerHTML = value
+        parent.appendChild(element)
     }
     const WRAP_ACCOUNT_NUMBERS = document.getElementById("transaction-date-wrap")
     const WRAP_ACCOUNT_NUMBERS_INTERNATIONAL = document.getElementById("international-date-wrap")
@@ -373,7 +419,6 @@ if (document.querySelector(".menu-tab")) {
 
             }
         }
-        console.log(objAccount.statictic)
         let arrLink = document.getElementsByClassName("link-benificiary")
         for (let i = 0; i < arrLink.length; i++) {
             arrLink[i].addEventListener("click", (e) => {
@@ -394,8 +439,8 @@ if (document.querySelector(".menu-tab")) {
                     "Status": `${obj.status_name}` || " "
                 }
                 function checkTypeTransfer(debit, credit, currency) {
-                    if (debit) {return `-${debit} ${currency}`}
-                    else {return `+${credit} ${currency}`}
+                    if (debit) { return `-${debit} ${currency}` }
+                    else { return `+${credit} ${currency}` }
                 }
                 sessionStorage.setItem("beneficiary", JSON.stringify(objFieldsName))
                 var newWin = window.open("about:blank", "New Blank", "width=600,height=700");
@@ -551,7 +596,7 @@ if (document.querySelector(".menu-tab")) {
                 )
         }
     })
-    
+
     // --------------------------------intra-transfer----------------------------------------
     let intraTransferSubmit = document.querySelector(".intra__btn");
     intraTransferSubmit.addEventListener("click", () => {
@@ -606,8 +651,8 @@ if (document.querySelector(".menu-tab")) {
         }
     })
 }
-if (document.getElementById("popup-message__close")) {
-    document.getElementById("popup-message__close").addEventListener("click", () => {
+if (document.querySelector(".popup-message__close")) {
+    document.querySelector(".popup-message__close").addEventListener("click", () => {
         document.querySelector(".popup-message").classList.add("d-none")
     })
 }

@@ -62,12 +62,12 @@ gulp.task('font:build', (done) => {
 });
 gulp.task('js:build', (done) => {
     gulp.src('src/js/*.js')
-        .pipe(sourcemaps.init())
-        .pipe(babel({
-            presets: ['@babel/preset-env']
-        }))
-        .pipe(uglify())
-        .pipe(sourcemaps.write('.'))
+        // .pipe(sourcemaps.init())
+        // .pipe(babel({
+        //     presets: ['@babel/preset-env']
+        // }))
+        // .pipe(uglify())
+        // .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('build/js'))
     done();
 });

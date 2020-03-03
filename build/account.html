@@ -11,7 +11,11 @@
     <link rel="stylesheet" href="css/media.css">
     <title>Account Page</title>
 </head>
-
+<script>
+    if (!sessionStorage.getItem('token')){
+        window.location=window.location.origin
+    }
+</script>
 <body class="flex-col-v_center">
     <header class="d-flex justify-between header">
         <img class="img__logo" src="img/logo.png" alt="logo">

@@ -1,2 +1,760 @@
-"use strict";function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}var sliderParent=document.querySelector(".slider"),sliderControls=document.querySelector(".slider-controls");if(sliderParent){var sliderCart=function(e,t){for(var n=0;n<e.children.length;n++)e.children[n].style.display="none";e.children[t].style.display="block"},runSlider=function(){for(var e=document.querySelectorAll(".slider-control__item"),t=0;t<e.length;t++)e[t].classList.contains("slider-control__item_active")&&(e[t].classList.remove("slider-control__item_active"),t!=e.length-1?(e["".concat(t+=1)].classList.add("slider-control__item_active"),sliderCart(sliderParent,t)):(e[t=0].classList.add("slider-control__item_active"),sliderCart(sliderParent,t)))};sliderControls&&sliderControls.addEventListener("click",(function(e){if(e.target.classList.contains("slider-control__item")){var t=e.target;document.querySelector(".slider-control__item_active").classList.remove("slider-control__item_active"),t.classList.add("slider-control__item_active");for(var n=0;n<sliderControls.children.length;n++)sliderControls.children[n].classList.contains("slider-control__item_active")&&sliderCart(sliderParent,n)}}))}var CURRENCY=document.getElementsByClassName("currency");if(CURRENCY){var xhr=new XMLHttpRequest;xhr.open("GET","https://api.exchangeratesapi.io/latest?base=EUR",!0),xhr.send(),xhr.addEventListener("readystatechange",(function(){if(this.readyState===this.DONE)for(var e=0;e<CURRENCY.length;e++)CURRENCY[e].children[1].innerText=JSON.parse(this.responseText).rates[CURRENCY[e].children[0].innerText]}))}var CRYPTO_CURRENCY=document.getElementsByClassName("crypto-currency");if(CRYPTO_CURRENCY){var xhrC=new XMLHttpRequest;xhrC.open("GET","https://min-api.cryptocompare.com/data/price?fsym=EUR&tsyms=BTC,ETH,BCH,USDT,LTC&apiKey=bb98291570d521612ebd320b47a541e57dd03581bc116ddeb19abb62e7a306a6",!0),xhrC.send(),xhrC.addEventListener("readystatechange",(function(){if(this.readyState===this.DONE)for(var e=0;e<CRYPTO_CURRENCY.length;e++)CRYPTO_CURRENCY[e].children[1].innerText=JSON.parse(this.responseText)[CRYPTO_CURRENCY[e].children[0].innerText]}))}var NEWS_SECTION=document.querySelector(".news-section");if(NEWS_SECTION){var xhrN=new XMLHttpRequest;xhrN.open("GET","https://newsapi.org/v2/top-headlines?category = business&sources=bloomberg&apiKey=d5ab78edfa2649a6b0fd66a7cf1c2c68",!0),xhrN.send(),xhrN.addEventListener("readystatechange",(function(){for(var e=0;e<NEWS_SECTION.children.length;e++)NEWS_SECTION.children[e].setAttribute("href",JSON.parse(this.responseText).articles[e].url),NEWS_SECTION.children[e].innerText=JSON.parse(this.responseText).articles[e].title}))}if(document.querySelector(".login-block")){var toggleDisplay=function(e){e.classList.toggle("d-none")},BLOCK_LOGIN=document.querySelector(".login-block"),LOGIN_BTN_CLOSE=document.querySelector(".login__btn-close"),BTN_LOGIN_POPUP=document.getElementById("btn-login-pop-up"),BTN_LOGIN=document.getElementById("login__btn"),BTN_PIN=document.getElementById("pin__btn"),BLOCK_AUTHORIZATION=document.querySelector(".authorization"),BLOCK_LOGIN_PIN=document.querySelector(".login-pin"),BLOCK_LOGIN_ERROR=document.querySelector(".login-error");LOGIN_BTN_CLOSE.addEventListener("click",(function(){toggleDisplay(BLOCK_LOGIN),BLOCK_AUTHORIZATION.classList.contains("d-none")&&toggleDisplay(BLOCK_AUTHORIZATION),BLOCK_LOGIN_ERROR.classList.contains("d-none")||toggleDisplay(BLOCK_LOGIN_ERROR),BLOCK_LOGIN_PIN.classList.contains("d-none")||toggleDisplay(BLOCK_LOGIN_PIN)})),BTN_LOGIN_POPUP.addEventListener("click",(function(){toggleDisplay(BLOCK_LOGIN)})),BTN_LOGIN.addEventListener("click",(function(){var e={username:document.querySelector(".authorization__login").value.trim(),password:document.querySelector(".authorization__password").value.trim()},t=JSON.stringify(e);new Promise((function(e,n){var r=new XMLHttpRequest;r.open("POST","https://server.samtsov.com:8090/api/login_check",!0),r.send(t),r.addEventListener("readystatechange",(function(){if(200===this.status)sessionStorage.setItem("token",JSON.parse(this.responseText).token),e(this.responseText);else{var t=new Error(this.statusText);"OK"!==t&&(t.code=this.status,n(t))}}))})).then((function(e){var t=new XMLHttpRequest;t.open("POST","https://server.samtsov.com:8090/user/sends/users/pins",!0),t.setRequestHeader("Authorization","".concat(sessionStorage.getItem("token"))),t.send(),t.addEventListener("readystatechange",(function(){this.readyState===this.DONE&&(toggleDisplay(BLOCK_AUTHORIZATION),toggleDisplay(BLOCK_LOGIN_PIN))}))}),(function(e){toggleDisplay(BLOCK_AUTHORIZATION),toggleDisplay(BLOCK_LOGIN_ERROR)}))})),BTN_PIN.addEventListener("click",(function(){new Promise((function(e,t){var n=new XMLHttpRequest;n.open("POST","https://server.samtsov.com:8090/user/verifications",!0),n.setRequestHeader("Authorization","Bearer "+"".concat(sessionStorage.getItem("token"))),n.setRequestHeader("Content-Type","application/json");var r=document.querySelector(".authorization__pin"),a={pin:"".concat(r.value)};n.send(JSON.stringify(a)),n.addEventListener("readystatechange",(function(){if(200===this.status)sessionStorage.setItem("base",this.responseText),e(this.responseText);else{var n=new Error(this.statusText);"OK"!==n&&(n.code=this.status,t(n))}}))})).then((function(e){window.location="".concat(window.origin,"/account.html")}),(function(e){toggleDisplay(BLOCK_LOGIN_PIN),toggleDisplay(BLOCK_LOGIN_ERROR)}))}))}if(document.querySelector(".menu-tab")){var toggleDisabled=function(e,t){e?t.removeAttribute("disabled"):t.setAttribute("disabled","true")},getElementAndSetText=function(e,t){return document.getElementById(e).innerText=t},createAccountRow=function(){var e=document.createElement("div");return e.classList.add("account-table-row"),e.classList.add("row__text_style"),accountInvoiceTable.appendChild(e),e},createDataAccount=function(e,t,n){var r=document.createElement("span");r.classList.add(e),r.innerHTML=t,n.appendChild(r)},createLi=function(e,t,n){var r=document.createElement("li");r.classList.add(e),r.classList.add("d-none"),r.innerText=t,n.appendChild(r)},createStatisticRow=function(){var e=document.createElement("div");return e.classList.add("statistic-table-row"),e.classList.add("row__text_style"),TRANSACTION_TABLE.appendChild(e),e},correctData=function(e){return arrData=e.split("T"),arrData[0]},statisticAmount=function(e){return e.debit?"-".concat(e.debit):"+".concat(e.credit)},benificiary=function(e){return"International Transfer"===e.transfer_type_name?'<a href="#" class="link-benificiary">'+"".concat(e.iban_code)+"</a>":"Intra Transfer"===e.transfer_type_name?e.intra_to_account_number:"Incoming Transfer"===e.transfer_type_name?e.account_special_number:"EuroDeniz IBU"},correctSender=function(e){return"Incoming Transfer"===e.transfer_type_name?"EuroDeniz IBU":e.account_special_number},clearStatisticRow=function(){for(var e=document.getElementsByClassName("statistic-table-row");0<e.length;)e[0].remove()},renderStatistic=function(e){if("All accounts"===e){var t=!0,n=!1,r=void 0;try{for(var a,c=objAccount.statictic[Symbol.iterator]();!(t=(a=c.next()).done);t=!0){key=a.value;var o=!0,i=!1,s=void 0;try{for(var u,l=key.transaction[Symbol.iterator]();!(o=(u=l.next()).done);o=!0){key2=u.value;var d=createStatisticRow();createDataAccount("account-table-row-column_w89",correctData(key2.date),d),createDataAccount("account-table-row-column_171",key2.transfer_type_name,d),createDataAccount("account-table-row-column_140",correctSender(key2),d),createDataAccount("account-table-row-column_w143",benificiary(key2),d),createDataAccount("account-table-row-column_w141",key2.transfer_number,d),createDataAccount("account-table-row-column_w98",statisticAmount(key2),d),createDataAccount("account-table-row-column_w96",key2.status_name,d),createDataAccount("account-table-row-column_w76","".concat(key2.balance," ").concat(key.currency),d)}}catch(e){i=!0,s=e}finally{try{o||null==l.return||l.return()}finally{if(i)throw s}}}}catch(e){n=!0,r=e}finally{try{t||null==c.return||c.return()}finally{if(n)throw r}}}else{var m=!0,_=!1,y=void 0;try{for(var f,p=objAccount.statictic[Symbol.iterator]();!(m=(f=p.next()).done);m=!0)if(key=f.value,key.account_number===e){var v=!0,T=!1,b=void 0;try{for(var N,g=key.transaction[Symbol.iterator]();!(v=(N=g.next()).done);v=!0){key2=N.value;var h=createStatisticRow();createDataAccount("account-table-row-column_w89",correctData(key2.date),h),createDataAccount("account-table-row-column_171",key2.transfer_type_name,h),createDataAccount("account-table-row-column_140",correctSender(key2),h),createDataAccount("account-table-row-column_w143",benificiary(key2),h),createDataAccount("account-table-row-column_w141",key2.transfer_number,h),createDataAccount("account-table-row-column_w98",statisticAmount(key2),h),createDataAccount("account-table-row-column_w96",key2.status_name,h),createDataAccount("account-table-row-column_w76","".concat(key2.balance," ").concat(key.currency),h)}}catch(e){T=!0,b=e}finally{try{v||null==g.return||g.return()}finally{if(T)throw b}}}}catch(e){_=!0,y=e}finally{try{m||null==p.return||p.return()}finally{if(_)throw y}}}console.log(objAccount.statictic);for(var A=document.getElementsByClassName("link-benificiary"),E=0;E<A.length;E++)A[E].addEventListener("click",(function(e){e.stopImmediatePropagation();var t,n,r,a=returnBenificiaryInfo(e.target.innerText),c={Beneficiary:"".concat(a.iban_code)||" ","To Account Number":"".concat(a.account_special_number)||" ","Bank Name":"".concat(a.bank_name)||" ","Bank Address":"".concat(a.bank_address)||" ","Beneficiary Address":"".concat(a.beneficiary_address)||" ","Beneficiary City":"".concat(a.beneficiary_city)||" ","Beneficiary Country":"".concat(a.beneficiary_country)||" ","Beneficiary Name":a.beneficiary_name||" ","Beneficiary Reference":"".concat(a.reference)||" ",Amount:"".concat((t=a.debit,n=a.credit,r=a.currency_abbreviation,t?"-".concat(t," ").concat(r):"+".concat(n," ").concat(r)))||" ","Transaction Number":"".concat(a.transfer_number)||" ",Status:"".concat(a.status_name)||" "};sessionStorage.setItem("beneficiary",JSON.stringify(c)),window.open("about:blank","New Blank","width=600,height=700").document.write("<script src='js/newWin.js' ><\/script>")}));sortRowStatistic("statistic-table-row")},returnBenificiaryInfo=function(e){var t=!0,n=!1,r=void 0;try{for(var a,c=objAccount.statictic[Symbol.iterator]();!(t=(a=c.next()).done);t=!0){key=a.value;var o=!0,i=!1,s=void 0;try{for(var u,l=key.transaction[Symbol.iterator]();!(o=(u=l.next()).done);o=!0)if(key2=u.value,key2.iban_code===e)return key2}catch(e){i=!0,s=e}finally{try{o||null==l.return||l.return()}finally{if(i)throw s}}}}catch(e){n=!0,r=e}finally{try{t||null==c.return||c.return()}finally{if(n)throw r}}},sortRowStatistic=function(e){for(var t=document.getElementsByClassName(e),n=0;n<t.length;n++)for(var r=0;r<t.length-1;r++)+t[r].children[0].innerText.replace(/-/g,"")<=+t["".concat(r+1)].children[0].innerText.replace(/-/g,"")&&t["".concat(r+1)].after(t[r])},wrapSelect=function(e){for(var t=e.parentNode,n=1;n<t.offsetParent.children.length;n++)e.classList.add("img_rotate"),e.parentNode.parentNode.children[n].classList.remove("d-none"),e.parentNode.parentNode.children[n].addEventListener("click",(function(n){n.stopImmediatePropagation();var r=e.previousElementSibling.innerText;e.previousElementSibling.innerText=n.target.innerText,n.target.innerText=r,clearStatisticRow(),renderStatistic(e.previousElementSibling.innerText),sortRowStatistic("statistic-table-row");for(var a=1;a<t.offsetParent.children.length;a++)e.parentNode.parentNode.children[a].classList.add("d-none");e.classList.remove("img_rotate")}))},blockArrTabs=document.querySelector(".menu-tab"),blockArrMenu=document.querySelectorAll(".menu-tab-block"),menuTab=document.querySelector(".menu-tab");blockArrTabs&&blockArrTabs.addEventListener("click",(function(e){var t=document.getElementsByClassName("menu-tab__item");document.querySelector(".tab_active").classList.remove("tab_active"),document.querySelector(".menu-tab__item_active").classList.remove("menu-tab__item_active");for(var n=0;n<t.length;n++)t[n]===e.target&&(menuTab.children[n].classList.add("menu-tab__item_active"),blockArrMenu[n].classList.add("tab_active"))}));var transferInputArgee=document.getElementById("transfer-btn__input"),transferBtnSend=document.querySelector(".transfer__btn");transferInputArgee.addEventListener("click",(function(){toggleDisabled(transferInputArgee.checked,transferBtnSend)}));var objAccount=JSON.parse(sessionStorage.getItem("base"))||"";for(key in getElementAndSetText("client-name","".concat(objAccount.client_first_name).concat(objAccount.client_id)),getElementAndSetText("client-email","".concat(objAccount.email)),objAccount)"object"!==_typeof(objAccount[key])&&getElementAndSetText(key,objAccount[key]);var accountInvoiceTable=document.getElementById("account-invoice"),accountArr=objAccount.accounts,accountNumbers=[];for(key in accountArr){var accountRow=createAccountRow();accountNumbers.push(accountArr[key].account_special_number),createDataAccount("account-details__column_w218",accountArr[key].account_special_number,accountRow),createDataAccount("account-details__column_w208",accountArr[key].account_type_name,accountRow),createDataAccount("account-details__column_w108",accountArr[key].currency_abbreviation,accountRow),createDataAccount("account-details__column_w115",accountArr[key].status?"Active":"Deactive",accountRow),createDataAccount("account-details__column_w126",accountArr[key].balance,accountRow),createDataAccount("account-details__column_w126",accountArr[key].min_balance,accountRow)}for(var WRAP_ACCOUNT_NUMBERS=document.getElementById("transaction-date-wrap"),WRAP_ACCOUNT_NUMBERS_INTERNATIONAL=document.getElementById("international-date-wrap"),WRAP_ACCOUNT_NUMBERS_INTRA=document.getElementById("intra-date-wrap"),WRAP_ACCOUNT_NUMBERS_INTRA_TO=document.getElementById("intra-date-wrap-to"),_i=0,_accountNumbers=accountNumbers;_i<_accountNumbers.length;_i++)key=_accountNumbers[_i],createLi("transaction-date-wrap__item",key,WRAP_ACCOUNT_NUMBERS);for(var _i2=0,_accountNumbers2=accountNumbers;_i2<_accountNumbers2.length;_i2++)key=_accountNumbers2[_i2],createLi("transaction-date-wrap__item",key,WRAP_ACCOUNT_NUMBERS_INTERNATIONAL);for(var _i3=0,_accountNumbers3=accountNumbers;_i3<_accountNumbers3.length;_i3++)key=_accountNumbers3[_i3],createLi("transaction-date-wrap__item",key,WRAP_ACCOUNT_NUMBERS_INTRA);for(var _i4=0,_accountNumbers4=accountNumbers;_i4<_accountNumbers4.length;_i4++)key=_accountNumbers4[_i4],createLi("transaction-date-wrap__item",key,WRAP_ACCOUNT_NUMBERS_INTRA_TO);var TRANSACTIONS_BTN=document.getElementById("transactions");TRANSACTIONS_BTN.addEventListener("click",(function(){new Promise((function(e,t){var n=new XMLHttpRequest;n.open("POST","https://server.samtsov.com:8090/api/transfeers/gets/users/accounts/details",!0),n.setRequestHeader("Authorization","Bearer "+"".concat(sessionStorage.getItem("token"))),n.setRequestHeader("Content-Type","application/json"),n.send(),n.addEventListener("readystatechange",(function(){200===this.status&&this.responseText&&e(this.responseText)}))})).then((function(e){objAccount.statictic=JSON.parse(e),clearStatisticRow(),renderStatistic("All accounts")}),(function(e){alert("Error")}))}));var TRANSACTION_TABLE=document.getElementById("transactions-table"),TRANSACTION_DATE_WRAP_IMG=document.getElementById("statistic-wrap-img"),INTERNATIONAL_DATE_WRAP_IMG=document.getElementById("international-wrap-img"),INTRA_DATE_WRAP_IMG=document.getElementById("intra-wrap-img"),INTRA_DATE_WRAP_IMG_TO=document.getElementById("intra-wrap-img-to");TRANSACTION_DATE_WRAP_IMG.addEventListener("click",(function(){wrapSelect(TRANSACTION_DATE_WRAP_IMG)})),INTERNATIONAL_DATE_WRAP_IMG.addEventListener("click",(function(){wrapSelect(INTERNATIONAL_DATE_WRAP_IMG)})),INTRA_DATE_WRAP_IMG.addEventListener("click",(function(){wrapSelect(INTRA_DATE_WRAP_IMG)})),INTRA_DATE_WRAP_IMG_TO.addEventListener("click",(function(){wrapSelect(INTRA_DATE_WRAP_IMG_TO)}));var TRANSACTION_DATE_SUBMIT=document.querySelector(".transaction-date__submit");TRANSACTION_DATE_SUBMIT.addEventListener("click",(function(){var e=document.getElementById("from-date"),t=document.getElementById("to-date");e.addEventListener("click",(function(){e.classList.contains("error")&&e.classList.remove("error"),e.value=""})),t.addEventListener("click",(function(){t.classList.contains("error")&&t.classList.remove("error"),t.value=""}));var n=/\d{4}\-\d{2}\-\d{2}/g;if(e.value.match(n)?t.value.match(n)?+e.value.replace(/-/g,"")>=+t.value.replace(/-/g,"")&&(e.classList.add("error"),t.classList.add("error")):t.classList.add("error"):e.classList.add("error"),!e.classList.contains("error")||!t.classList.contains("error")){clearStatisticRow(),renderStatistic(document.querySelector(".transaction-date-wrap__item").innerText);for(var r=document.getElementsByClassName("statistic-table-row"),a=0;a<r.length;a++)+e.value.replace(/-/g,"")<=+r[a].children[0].innerText.replace(/-/g,"")&&+r[a].children[0].innerText.replace(/-/g,"")<=+t.value.replace(/-/g,"")||(r[a].remove(),a--)}}));var INTERNATIONAL_BTN=document.querySelector(".transfer__btn"),objPaymentDate={};INTERNATIONAL_BTN.addEventListener("click",(function(e){e.preventDefault();var t=document.getElementsByClassName("transfer-input-block"),n=document.getElementsByClassName("transfer-pay-charges__input"),r=document.getElementById("transfer-account-number"),a=document.getElementById("transfer-btn__input");objPaymentDate.from_account=r.innerText;for(var c=function(e){objPaymentDate[t[e].children[0].innerText]=t[e].children[1].value,""===t[e].children[1].value&&(t[e].classList.add("error"),t[e].addEventListener("click",(function(n){n.preventDefault(),t[e].classList.remove("error")})))},o=0;o<t.length;o++)c(o);for(var i=1;i<n.length;i++)n[i].checked&&(objPaymentDate.PayCharges=n[i].value);return"All accounts"===r.innerText?alert("error Account number"):a.checked?document.querySelector(".error")?alert("error fields"):void new Promise((function(e,t){var n=new XMLHttpRequest;n.open("POST","https://server.samtsov.com:8090/api/transfeers/payments/requests/applications",!0),n.setRequestHeader("Authorization","Bearer "+"".concat(sessionStorage.getItem("token"))),n.setRequestHeader("Content-Type","application/json"),n.send(JSON.stringify(objPaymentDate)),n.addEventListener("readystatechange",(function(){if(200===this.status)e(this.responseText);else{var n=new Error(this.statusText);"OK"!==n&&(n.code=this.status,t(n))}}))})).then((function(e){document.querySelector(".popup-message").classList.remove("d-none");for(var n=0;n<t.length;n++)t[n].children[1].value=""}),(function(e){alert("Error")})):alert("error Terms of use")}));var intraTransferSubmit=document.querySelector(".intra__btn");intraTransferSubmit.addEventListener("click",(function(){var e=document.getElementById("intra-account"),t=document.getElementById("intra-to-account"),n=document.getElementById("intra-amount_input"),r=document.getElementById("intra-reference_input"),a=document.getElementById("intra-btn__input");if(e.innerText===t.innerText)return alert("error account number");if("All accounts"===e.innerText)return alert("error account number");if("All accounts"===t.innerText)return alert("error to account number");if(""===n.value||"number"!=typeof+n.value)return alert("error amount");if(""===r.value)return alert("error reference");if(!a.checked)return alert("error Terms of use");var c={};c.from_account=e.innerText,c.to_account=t.innerText,c.amount=n.value,c.reference=r.value,new Promise((function(e,t){var n=new XMLHttpRequest;n.open("POST","https://server.samtsov.com:8090/api/transfeers/internals/applications",!0),n.setRequestHeader("Authorization","Bearer "+"".concat(sessionStorage.getItem("token"))),n.setRequestHeader("Content-Type","application/json"),n.send(JSON.stringify(c)),n.addEventListener("readystatechange",(function(){if(200===this.status)e(this.responseText);else{var n=new Error(this.statusText);"OK"!==n&&(n.code=this.status,t(n))}}))})).then((function(e){document.querySelector(".popup-message").classList.remove("d-none")}),(function(e){alert("Error")}))}))}document.getElementById("popup-message__close")&&document.getElementById("popup-message__close").addEventListener("click",(function(){document.querySelector(".popup-message").classList.add("d-none")}));var ONLINE_FORM_SUBMIT=document.querySelector(".online-form__input_submit");ONLINE_FORM_SUBMIT&&ONLINE_FORM_SUBMIT.addEventListener("click",(function(e){e.preventDefault();for(var t=document.querySelectorAll(".online-form-block"),n=document.getElementById("input-password"),r=document.getElementById("input-confirm-password"),a={},c=function(e){return t[e].children[1]},o=function(e){c(e).classList.add("menu-bord_text-error"),c(e).addEventListener("click",(function(){c(e).classList.remove("menu-bord_text-error"),c(e).value=""}))},i=function(e){e.classList.add("menu-bord_text-error"),e.addEventListener("click",(function(){e.classList.remove("menu-bord_text-error"),e.value=""}))},s=0;s<t.length-1;s++)-1==c(s).value.search(c(s).getAttribute("pattern"))&&o(s),a[t[s].children[0].innerText]=c(s).value.trim();(n.value!==r.value&&(i(n),i(r)),document.querySelector(".menu-bord_text-error"))||new Promise((function(e,t){var n=new XMLHttpRequest;n.open("POST","https://server.samtsov.com:8090/mailer/onlines/registrations",!0),n.setRequestHeader("Content-Type","application/json"),n.send(JSON.stringify(a)),n.addEventListener("readystatechange",(function(){if(200===this.status)e(this.responseText);else{var n=new Error(this.statusText);"OK"!==n&&(n.code=this.status,t(n))}}))})).then((function(e){document.querySelector(".popup-message").classList.remove("d-none")}),(function(e){alert("Error")}))})),document.querySelector(".form__input_submit")&&document.querySelector(".form__input_submit").addEventListener("click",(function(e){e.preventDefault();var t=document.querySelectorAll(".form-block"),n={};n[t[0].children[0].innerText]=t[0].children[1].value,n[t[1].children[0].innerText]=t[1].children[1].value,n[t[2].children[0].innerText]=t[2].children[1].value,n[t[3].children[0].innerText]=t[3].children[1].value,new Promise((function(e,t){var r=new XMLHttpRequest;r.open("POST","https://server.samtsov.com:8090/mailer/contacts/forms",!0),r.setRequestHeader("Content-Type","application/json"),r.send(JSON.stringify(n)),r.addEventListener("readystatechange",(function(){if(200===this.status)e(this.responseText);else{var n=new Error(this.statusText);"OK"!==n&&(n.code=this.status,t(n))}}))})).then((function(e){document.querySelector(".popup-message").classList.remove("d-none")}),(function(e){alert("error")}))}));
-//# sourceMappingURL=script.js.map
+let sliderParent = document.querySelector(".slider");
+let sliderControls = document.querySelector(".slider-controls");
+if (sliderParent) {
+    function sliderCart(arrElem, count) {
+        for (let j = 0; j < arrElem.children.length; j++) {
+            arrElem.children[j].style.display = "none";
+        }
+        arrElem.children[count].style.display = "block";
+    }
+    if (sliderControls) {
+        sliderControls.addEventListener("click", function (e) {
+            if (e.target.classList.contains("slider-control__item")) {
+                let btnSlider = e.target;
+                let activeClass = document.querySelector(".slider-control__item_active");
+                activeClass.classList.remove("slider-control__item_active")
+                btnSlider.classList.add("slider-control__item_active")
+                for (let i = 0; i < sliderControls.children.length; i++) {
+                    if (sliderControls.children[i].classList.contains("slider-control__item_active")) {
+                        sliderCart(sliderParent, i)
+                    }
+                }
+            }
+        })
+    }
+    function runSlider() {
+        let arrControlSlider = document.querySelectorAll(".slider-control__item")
+        for (let i = 0; i < arrControlSlider.length; i++) {
+            if (arrControlSlider[i].classList.contains("slider-control__item_active")) {
+                arrControlSlider[i].classList.remove("slider-control__item_active")
+                if (i != arrControlSlider.length - 1) {
+                    arrControlSlider[`${i += 1}`].classList.add("slider-control__item_active")
+                    sliderCart(sliderParent, i)
+                }
+                else {
+                    i = 0;
+                    arrControlSlider[i].classList.add("slider-control__item_active")
+                    sliderCart(sliderParent, i)
+                }
+            }
+        }
+    }
+    // setInterval(runSlider, 5000)
+}
+// -----------------------------currency rate--------------------------------
+const CURRENCY = document.getElementsByClassName("currency")
+if (CURRENCY) {
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://api.exchangeratesapi.io/latest?base=EUR", true);
+    xhr.send();
+    xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+            for (let i = 0; i < CURRENCY.length; i++) {
+                CURRENCY[i].children[1].innerText = JSON.parse(this.responseText).rates[CURRENCY[i].children[0].innerText];
+            };
+        };
+    });
+}
+// -----------------------------------crypto currency -----------------------------------------------
+const CRYPTO_CURRENCY = document.getElementsByClassName("crypto-currency")
+if (CRYPTO_CURRENCY) {
+    let xhrC = new XMLHttpRequest();
+    xhrC.open("GET", "https://min-api.cryptocompare.com/data/price?fsym=EUR&tsyms=BTC,ETH,BCH,USDT,LTC&apiKey=bb98291570d521612ebd320b47a541e57dd03581bc116ddeb19abb62e7a306a6", true);
+    xhrC.send();
+    xhrC.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+            for (let i = 0; i < CRYPTO_CURRENCY.length; i++) {
+
+                CRYPTO_CURRENCY[i].children[1].innerText = JSON.parse(this.responseText)[CRYPTO_CURRENCY[i].children[0].innerText];
+            };
+        };
+    });
+}
+// ------------------------------------------news block-------------------------------------
+
+const NEWS_SECTION = document.querySelector(".news-section")
+if (NEWS_SECTION) {
+    let xhrN = new XMLHttpRequest();
+    xhrN.open("GET", "https://newsapi.org/v2/top-headlines?category = business&sources=bloomberg&apiKey=d5ab78edfa2649a6b0fd66a7cf1c2c68", true);
+    xhrN.send();
+    xhrN.addEventListener("readystatechange", function () {
+        for (let j = 0; j < NEWS_SECTION.children.length; j++) {
+            NEWS_SECTION.children[j].setAttribute('href', JSON.parse(this.responseText).articles[j].url);
+            NEWS_SECTION.children[j].innerText = JSON.parse(this.responseText).articles[j].title;
+        }
+    });
+}
+
+
+// -------------------------------------log-in---------------------------------------------
+if (document.querySelector(".login-block")) {
+    const BLOCK_LOGIN = document.querySelector(".login-block")
+    const LOGIN_BTN_CLOSE = document.querySelector(".login__btn-close")
+    const BTN_LOGIN_POPUP = document.getElementById("btn-login-pop-up")
+    const BTN_LOGIN = document.getElementById("login__btn")
+    const BTN_PIN = document.getElementById("pin__btn")
+    const BLOCK_AUTHORIZATION = document.querySelector(".authorization")
+    const BLOCK_LOGIN_PIN = document.querySelector(".login-pin")
+    const BLOCK_LOGIN_ERROR = document.querySelector(".login-error")
+    function toggleDisplay(elem) {
+        elem.classList.toggle("d-none")
+    }
+    LOGIN_BTN_CLOSE.addEventListener("click", () => {
+        toggleDisplay(BLOCK_LOGIN)
+        if (BLOCK_AUTHORIZATION.classList.contains("d-none")) toggleDisplay(BLOCK_AUTHORIZATION)
+        if (!BLOCK_LOGIN_ERROR.classList.contains("d-none")) toggleDisplay(BLOCK_LOGIN_ERROR)
+        if (!BLOCK_LOGIN_PIN.classList.contains("d-none")) toggleDisplay(BLOCK_LOGIN_PIN)
+    })
+    BTN_LOGIN_POPUP.addEventListener("click", () => { toggleDisplay(BLOCK_LOGIN) })
+
+    BTN_LOGIN.addEventListener("click", () => {
+        let obj = {
+            username: document.querySelector(".authorization__login").value.trim(),
+            password: document.querySelector(".authorization__password").value.trim()
+        }
+        let objS = JSON.stringify(obj)
+        let promise = new Promise((resolve, reject) => {
+            let xhrd = new XMLHttpRequest();
+            xhrd.open("POST", "https://server.samtsov.com:8090/api/login_check", true);
+            xhrd.send(objS);
+            xhrd.addEventListener("readystatechange", function () {
+                if (this.status === 200) {
+                    sessionStorage.setItem("token", JSON.parse(this.responseText).token);
+                    resolve(this.responseText)
+                }
+                else {
+                    var error = new Error(this.statusText);
+                    if (error !== "OK") {
+                        error.code = this.status;
+                        reject(error);
+                    }
+                }
+            });
+        })
+        promise
+            .then(
+                result => {
+                    let result1 = new XMLHttpRequest();
+                    result1.open("POST", "https://server.samtsov.com:8090/user/sends/users/pins", true);
+                    result1.setRequestHeader("Authorization", `${sessionStorage.getItem("token")}`)
+                    result1.send();
+                    result1.addEventListener("readystatechange", function () {
+                        if (this.readyState === this.DONE) {
+                            toggleDisplay(BLOCK_AUTHORIZATION)
+                            toggleDisplay(BLOCK_LOGIN_PIN)
+                        }
+                    });
+                },
+                error => {
+                    toggleDisplay(BLOCK_AUTHORIZATION)
+                    toggleDisplay(BLOCK_LOGIN_ERROR)
+
+                }
+            )
+
+    })
+    BTN_PIN.addEventListener("click", () => {
+        let promise = new Promise((resolve, rejec) => {
+            let xhrd = new XMLHttpRequest();
+            xhrd.open("POST", "https://server.samtsov.com:8090/user/verifications", true);
+            xhrd.setRequestHeader("Authorization", 'Bearer ' + `${sessionStorage.getItem("token")}`)
+            xhrd.setRequestHeader("Content-Type", "application/json");
+            let inputPin = document.querySelector(".authorization__pin")
+            let pin = { "pin": `${inputPin.value}` }
+            xhrd.send(JSON.stringify(pin));
+            xhrd.addEventListener("readystatechange", function () {
+                if (this.status === 200) {
+                    sessionStorage.setItem("base", this.responseText)
+                    resolve(this.responseText)
+                }
+                else {
+                    var error = new Error(this.statusText);
+                    if (error !== "OK") {
+                        error.code = this.status;
+                        rejec(error);
+                    }
+                }
+            });
+        })
+        promise
+            .then(
+                resul => {
+                    window.location = `${window.origin}/account.html`;
+                },
+                error => {
+                    toggleDisplay(BLOCK_LOGIN_PIN)
+                    toggleDisplay(BLOCK_LOGIN_ERROR)
+                }
+            )
+    })
+}
+// ------------------------------------------------account----------------------------------------
+if (document.querySelector(".menu-tab")) {
+
+
+
+
+
+
+
+//позвони когда увидишь этот кусок кода
+
+
+
+    let promise = new Promise((resolve, reject) => {
+        let xhrd = new XMLHttpRequest();
+        xhrd.open("POST", "https://server.samtsov.com:8090/api/transfeers/gets/users/accounts/details", true);
+        xhrd.setRequestHeader("Authorization", 'Bearer ' + `${sessionStorage.getItem("token")}`)
+        xhrd.setRequestHeader("Content-Type", "application/json");
+        xhrd.send();
+        xhrd.addEventListener("readystatechange", function () {
+            if (this.status === 200) {
+                if (this.responseText) resolve(this.responseText)
+            }
+        });
+    })
+    promise
+        .then(
+            resul => {
+                objAccount.statictic = JSON.parse(resul)
+                clearStatisticRow()
+                renderStatistic("All accounts")
+            },
+            error => {
+                alert("Error")
+            }
+        )
+
+
+
+// кусок страшного кода закончен
+
+
+
+
+
+
+
+    let blockArrTabs = document.querySelector(".menu-tab");
+    let blockArrMenu = document.querySelectorAll(".menu-tab-block");
+    let menuTab = document.querySelector(".menu-tab")
+
+    if (blockArrTabs) {
+        blockArrTabs.addEventListener("click", (e) => {
+            let arrTabs = document.getElementsByClassName("menu-tab__item");
+            document.querySelector(".tab_active").classList.remove("tab_active")
+            document.querySelector(".menu-tab__item_active").classList.remove("menu-tab__item_active")
+            for (let i = 0; i < arrTabs.length; i++) {
+                if (arrTabs[i] === e.target) {
+                    menuTab.children[i].classList.add("menu-tab__item_active")
+                    blockArrMenu[i].classList.add("tab_active")
+                }
+            }
+        })
+    }
+    let transferInputArgee = document.getElementById("transfer-btn__input")
+    let transferBtnSend = document.querySelector(".transfer__btn")
+    function toggleDisabled(booleanValue, elemDisabled) {
+        booleanValue ? elemDisabled.removeAttribute("disabled") : elemDisabled.setAttribute("disabled", "true")
+    }
+
+    transferInputArgee.addEventListener("click", () => {
+        toggleDisabled(transferInputArgee.checked, transferBtnSend)
+    })
+    let objAccount = JSON.parse(sessionStorage.getItem("base")) || ""
+    function getElementAndSetText(element, text) {
+        return document.getElementById(element).innerText = text
+    }
+    getElementAndSetText("client-name", `${objAccount.client_first_name}${objAccount.client_id}`)
+    getElementAndSetText("client-email", `${objAccount.email}`)
+    for (key in objAccount) {
+        if (typeof (objAccount[key]) !== "object") {
+            getElementAndSetText(key, objAccount[key])
+        }
+    }
+
+    let accountInvoiceTable = document.getElementById("account-invoice")
+    function createAccountRow() {
+        let accountInvoiceTableRow = document.createElement("div")
+        accountInvoiceTableRow.classList.add("account-table-row")
+        accountInvoiceTableRow.classList.add("row__text_style")
+        accountInvoiceTable.appendChild(accountInvoiceTableRow)
+        return accountInvoiceTableRow
+    }
+
+
+    let accountArr = objAccount.accounts
+    let accountNumbers = []
+    for (key in accountArr) {
+        let accountRow = createAccountRow();
+        accountNumbers.push(accountArr[key].account_special_number)
+        createDataAccount("account-details__column_w218", accountArr[key].account_special_number, accountRow)
+        createDataAccount("account-details__column_w208", accountArr[key].account_type_name, accountRow)
+        createDataAccount("account-details__column_w108", accountArr[key].currency_abbreviation, accountRow)
+        createDataAccount("account-details__column_w115", (accountArr[key].status) ? "Active" : "Deactive", accountRow)
+        createDataAccount("account-details__column_w126", accountArr[key].balance, accountRow)
+        createDataAccount("account-details__column_w126", accountArr[key].min_balance, accountRow)
+
+    }
+    function createDataAccount(className, value, parent) {
+        let element = document.createElement("span")
+        element.classList.add(className);
+        element.innerHTML = value
+        parent.appendChild(element)
+    }
+    const WRAP_ACCOUNT_NUMBERS = document.getElementById("transaction-date-wrap")
+    const WRAP_ACCOUNT_NUMBERS_INTERNATIONAL = document.getElementById("international-date-wrap")
+    const WRAP_ACCOUNT_NUMBERS_INTRA = document.getElementById("intra-date-wrap")
+    const WRAP_ACCOUNT_NUMBERS_INTRA_TO = document.getElementById("intra-date-wrap-to")
+    function createLi(className, value, parent) {
+        let elem = document.createElement("li");
+        elem.classList.add(className)
+        elem.classList.add("d-none")
+        elem.innerText = value
+        parent.appendChild(elem)
+    }
+
+    for (key of accountNumbers) createLi("transaction-date-wrap__item", key, WRAP_ACCOUNT_NUMBERS)
+    for (key of accountNumbers) createLi("transaction-date-wrap__item", key, WRAP_ACCOUNT_NUMBERS_INTERNATIONAL)
+    for (key of accountNumbers) createLi("transaction-date-wrap__item", key, WRAP_ACCOUNT_NUMBERS_INTRA)
+    for (key of accountNumbers) createLi("transaction-date-wrap__item", key, WRAP_ACCOUNT_NUMBERS_INTRA_TO)
+
+    const TRANSACTIONS_BTN = document.getElementById("transactions")
+
+    TRANSACTIONS_BTN.addEventListener("click", () => {
+        let promise = new Promise((resolve, reject) => {
+            let xhrd = new XMLHttpRequest();
+            xhrd.open("POST", "https://server.samtsov.com:8090/api/transfeers/gets/users/accounts/details", true);
+            xhrd.setRequestHeader("Authorization", 'Bearer ' + `${sessionStorage.getItem("token")}`)
+            xhrd.setRequestHeader("Content-Type", "application/json");
+            xhrd.send();
+            xhrd.addEventListener("readystatechange", function () {
+                if (this.status === 200) {
+                    if (this.responseText) resolve(this.responseText)
+                }
+            });
+        })
+        promise
+            .then(
+                resul => {
+                    objAccount.statictic = JSON.parse(resul)
+                    clearStatisticRow()
+                    renderStatistic("All accounts")
+                },
+                error => {
+                    alert("Error")
+                }
+            )
+    })
+    const TRANSACTION_TABLE = document.getElementById("transactions-table")
+
+    function createStatisticRow() {
+        let statisticRow = document.createElement("div")
+        statisticRow.classList.add("statistic-table-row")
+        statisticRow.classList.add("row__text_style")
+        TRANSACTION_TABLE.appendChild(statisticRow)
+        return statisticRow
+    }
+    function correctData(data) {
+        arrData = data.split("T")
+        return arrData[0]
+    }
+    function statisticAmount(elem) {
+        if (elem.debit) { return `-${elem.debit}` } else { return `+${elem.credit}` }
+    }
+    function benificiary(obj) {
+
+        if (obj.transfer_type_name === "International Transfer") {
+            return '<a href="#" class="link-benificiary">' + `${obj.iban_code}` + '</a>'
+        }
+
+        else if (obj.transfer_type_name === "Intra Transfer") return obj.intra_to_account_number
+        else if (obj.transfer_type_name === "Incoming Transfer") return obj.account_special_number
+        else { return "EuroDeniz IBU" }
+
+    }
+    function correctSender(obj) {
+        if (obj.transfer_type_name === "Incoming Transfer") { return "EuroDeniz IBU" }
+        else return obj.account_special_number
+    }
+    function clearStatisticRow() {
+        const arrRow = document.getElementsByClassName("statistic-table-row");
+        for (let i = 0; i < arrRow.length;) {
+            arrRow[0].remove()
+        }
+    }
+
+
+    function renderStatistic(account) {
+        if (account === "All accounts") {
+            for (key of objAccount.statictic) {
+                for (key2 of key.transaction) {
+                    let statisticRow = createStatisticRow()
+                    createDataAccount("account-table-row-column_w89", correctData(key2.date), statisticRow)
+                    createDataAccount("account-table-row-column_171", key2.transfer_type_name, statisticRow)
+                    createDataAccount("account-table-row-column_140", correctSender(key2), statisticRow)
+                    createDataAccount("account-table-row-column_w143", benificiary(key2), statisticRow)
+                    createDataAccount("account-table-row-column_w141", key2.transfer_number, statisticRow)
+                    createDataAccount("account-table-row-column_w98", statisticAmount(key2), statisticRow)
+                    createDataAccount("account-table-row-column_w96", key2.status_name, statisticRow)
+                    createDataAccount("account-table-row-column_w76", `${key2.balance} ${key.currency}`, statisticRow)
+                }
+            }
+        }
+        else {
+            for (key of objAccount.statictic) {
+                if (key.account_number === account) {
+                    for (key2 of key.transaction) {
+                        let statisticRow = createStatisticRow()
+                        createDataAccount("account-table-row-column_w89", correctData(key2.date), statisticRow)
+                        createDataAccount("account-table-row-column_171", key2.transfer_type_name, statisticRow)
+                        createDataAccount("account-table-row-column_140", correctSender(key2), statisticRow)
+                        createDataAccount("account-table-row-column_w143", benificiary(key2), statisticRow)
+                        createDataAccount("account-table-row-column_w141", key2.transfer_number, statisticRow)
+                        createDataAccount("account-table-row-column_w98", statisticAmount(key2), statisticRow)
+                        createDataAccount("account-table-row-column_w96", key2.status_name, statisticRow)
+                        createDataAccount("account-table-row-column_w76", `${key2.balance} ${key.currency}`, statisticRow)
+                    }
+                }
+
+            }
+        }
+        let arrLink = document.getElementsByClassName("link-benificiary")
+        for (let i = 0; i < arrLink.length; i++) {
+            arrLink[i].addEventListener("click", (e) => {
+                e.stopImmediatePropagation()
+                let obj = returnBenificiaryInfo(e.target.innerText)
+                let objFieldsName = {
+                    "Beneficiary": `${obj.iban_code}` || " ",
+                    "To Account Number": `${obj.account_special_number}` || " ",
+                    "Bank Name": `${obj.bank_name}` || " ",
+                    "Bank Address": `${obj.bank_address}` || " ",
+                    "Beneficiary Address": `${obj.beneficiary_address}` || " ",
+                    "Beneficiary City": `${obj.beneficiary_city}` || " ",
+                    "Beneficiary Country": `${obj.beneficiary_country}` || " ",
+                    "Beneficiary Name": obj.beneficiary_name || " ",
+                    "Beneficiary Reference": `${obj.reference}` || " ",
+                    "Amount": `${checkTypeTransfer(obj.debit, obj.credit, obj.currency_abbreviation)}` || " ",
+                    "Transaction Number": `${obj.transfer_number}` || " ",
+                    "Status": `${obj.status_name}` || " "
+                }
+                function checkTypeTransfer(debit, credit, currency) {
+                    if (debit) { return `-${debit} ${currency}` }
+                    else { return `+${credit} ${currency}` }
+                }
+                sessionStorage.setItem("beneficiary", JSON.stringify(objFieldsName))
+                var newWin = window.open("about:blank", "New Blank", "width=600,height=700");
+                newWin.document.write("<script src='js/newWin.js' ></scr" + "ipt>"
+                )
+            })
+        }
+        sortRowStatistic("statistic-table-row")
+    }
+    function returnBenificiaryInfo(text) {
+        for (key of objAccount.statictic) {
+            for (key2 of key.transaction) {
+                if (key2.iban_code === text) return key2
+            }
+        }
+    }
+    function sortRowStatistic(HTMLelem) {
+        let rowStatistic = document.getElementsByClassName(HTMLelem);
+
+        for (let i = 0; i < rowStatistic.length; i++) {
+            for (let j = 0; j < rowStatistic.length - 1; j++) {
+                if (+(rowStatistic[j].children[0].innerText.replace(/-/g, "")) <= +(rowStatistic[`${j + 1}`].children[0].innerText.replace(/-/g, ""))) {
+                    rowStatistic[`${j + 1}`].after(rowStatistic[j])
+                }
+            }
+        }
+    }
+    const TRANSACTION_DATE_WRAP_IMG = document.getElementById("statistic-wrap-img")
+    const INTERNATIONAL_DATE_WRAP_IMG = document.getElementById("international-wrap-img")
+    const INTRA_DATE_WRAP_IMG = document.getElementById("intra-wrap-img")
+    const INTRA_DATE_WRAP_IMG_TO = document.getElementById("intra-wrap-img-to")
+
+    TRANSACTION_DATE_WRAP_IMG.addEventListener("click", () => { wrapSelect(TRANSACTION_DATE_WRAP_IMG) })
+    INTERNATIONAL_DATE_WRAP_IMG.addEventListener("click", () => { wrapSelect(INTERNATIONAL_DATE_WRAP_IMG) })
+    INTRA_DATE_WRAP_IMG.addEventListener("click", () => { wrapSelect(INTRA_DATE_WRAP_IMG) })
+    INTRA_DATE_WRAP_IMG_TO.addEventListener("click", () => { wrapSelect(INTRA_DATE_WRAP_IMG_TO) })
+    function wrapSelect(elem) {
+        let elemParent = elem.parentNode
+        for (let i = 1; i < elemParent.offsetParent.children.length; i++) {
+            elem.classList.add("img_rotate")
+            elem.parentNode.parentNode.children[i].classList.remove("d-none")
+            elem.parentNode.parentNode.children[i].addEventListener("click", (e) => {
+                e.stopImmediatePropagation()
+                let text = elem.previousElementSibling.innerText
+                elem.previousElementSibling.innerText = e.target.innerText
+                e.target.innerText = text
+                clearStatisticRow()
+                renderStatistic(elem.previousElementSibling.innerText)
+                sortRowStatistic("statistic-table-row")
+                for (let i = 1; i < elemParent.offsetParent.children.length; i++) {
+                    elem.parentNode.parentNode.children[i].classList.add("d-none")
+                }
+                elem.classList.remove("img_rotate")
+            })
+        }
+    }
+    const TRANSACTION_DATE_SUBMIT = document.querySelector(".transaction-date__submit");
+    TRANSACTION_DATE_SUBMIT.addEventListener("click", () => {
+        let fromDate = document.getElementById("from-date")
+        let toDate = document.getElementById("to-date")
+        fromDate.addEventListener("click", () => {
+            if (fromDate.classList.contains("error")) fromDate.classList.remove("error"); fromDate.value = ""
+        })
+        toDate.addEventListener("click", () => {
+            if (toDate.classList.contains("error")) toDate.classList.remove("error"); toDate.value = ""
+        })
+        const REG_EXP = /\d{4}\-\d{2}\-\d{2}/g
+        if (!fromDate.value.match(REG_EXP)) {
+            fromDate.classList.add("error")
+        }
+        else if (!toDate.value.match(REG_EXP)) {
+            toDate.classList.add("error")
+        }
+        else if (+(fromDate.value.replace(/-/g, "")) >= +(toDate.value.replace(/-/g, ""))) {
+            fromDate.classList.add("error")
+            toDate.classList.add("error")
+        }
+        if (!fromDate.classList.contains("error") || !toDate.classList.contains("error")) {
+            clearStatisticRow()
+            renderStatistic(document.querySelector(".transaction-date-wrap__item").innerText)
+            let statisticRow = document.getElementsByClassName("statistic-table-row")
+            for (let i = 0; i < statisticRow.length; i++) {
+                if (((+(fromDate.value.replace(/-/g, ""))) <= (+(statisticRow[i].children[0].innerText.replace(/-/g, ""))) && (+(statisticRow[i].children[0].innerText.replace(/-/g, ""))) <= (+(toDate.value.replace(/-/g, ""))))) { }
+                else { statisticRow[i].remove(); i--; }
+            }
+        }
+    })
+    // --------------------------------international-transfer----------------------------------------
+    const INTERNATIONAL_BTN = document.querySelector(".transfer__btn");
+
+    let objPaymentDate = {}
+    INTERNATIONAL_BTN.addEventListener("click", (e) => {
+        e.preventDefault()
+        const INTERNATIONAL_INPUT_BLOCK = document.getElementsByClassName("transfer-input-block");
+        const INTERNATIONAL_PAY_CHARGES = document.getElementsByClassName("transfer-pay-charges__input");
+        const INTERNATIONAL_ACCOUNT_NUMBER = document.getElementById("transfer-account-number");
+        const INTERNATIONAL_CHECKBOX = document.getElementById("transfer-btn__input")
+        objPaymentDate["from_account"] = INTERNATIONAL_ACCOUNT_NUMBER.innerText
+        for (let i = 0; i < INTERNATIONAL_INPUT_BLOCK.length; i++) {
+            objPaymentDate[INTERNATIONAL_INPUT_BLOCK[i].children[0].innerText] = INTERNATIONAL_INPUT_BLOCK[i].children[1].value
+            if (INTERNATIONAL_INPUT_BLOCK[i].children[1].value === "") {
+                INTERNATIONAL_INPUT_BLOCK[i].classList.add("error")
+                INTERNATIONAL_INPUT_BLOCK[i].addEventListener("click", (e) => {
+                    e.preventDefault()
+                    INTERNATIONAL_INPUT_BLOCK[i].classList.remove("error")
+                })
+            }
+        }
+        for (let i = 1; i < INTERNATIONAL_PAY_CHARGES.length; i++) {
+            if (INTERNATIONAL_PAY_CHARGES[i].checked) {
+                objPaymentDate["PayCharges"] = INTERNATIONAL_PAY_CHARGES[i].value;
+            }
+        }
+        if (INTERNATIONAL_ACCOUNT_NUMBER.innerText === "All accounts") {
+            return alert("error Account number")
+        }
+        else if (!INTERNATIONAL_CHECKBOX.checked) { return alert("error Terms of use") }
+        else if (document.querySelector(".error")) {
+            return alert("error fields")
+
+        }
+        else {
+            let promise = new Promise((resolve, rejec) => {
+                let xhrd = new XMLHttpRequest();
+                xhrd.open("POST", "https://server.samtsov.com:8090/api/transfeers/payments/requests/applications", true);
+                xhrd.setRequestHeader("Authorization", 'Bearer ' + `${sessionStorage.getItem("token")}`)
+                xhrd.setRequestHeader("Content-Type", "application/json");
+                xhrd.send(JSON.stringify(objPaymentDate));
+                xhrd.addEventListener("readystatechange", function () {
+                    if (this.status === 200) {
+                        resolve(this.responseText)
+                    }
+                    else {
+                        var error = new Error(this.statusText);
+                        if (error !== "OK") {
+                            error.code = this.status;
+                            rejec(error);
+                        }
+                    }
+                });
+            })
+            promise
+                .then(
+                    resul => {
+                        document.querySelector(".popup-message").classList.remove("d-none")
+                        for (let i = 0; i < INTERNATIONAL_INPUT_BLOCK.length; i++) {
+                            INTERNATIONAL_INPUT_BLOCK[i].children[1].value = "";
+                        }
+                    },
+                    error => {
+                        alert("Error")
+                    }
+                )
+        }
+    })
+
+    // --------------------------------intra-transfer----------------------------------------
+    let intraTransferSubmit = document.querySelector(".intra__btn");
+    intraTransferSubmit.addEventListener("click", () => {
+        const INTRA_ACCOUNT = document.getElementById("intra-account");
+        const INTRA_TO_ACCOUNT = document.getElementById("intra-to-account");
+        const INTRA_AMOUNT = document.getElementById("intra-amount_input");
+        const INTRA_REFERENCE = document.getElementById("intra-reference_input");
+        const INTRA_BTN_INPUT = document.getElementById("intra-btn__input")
+        if (INTRA_ACCOUNT.innerText === INTRA_TO_ACCOUNT.innerText) return alert("error account number")
+        else if (INTRA_ACCOUNT.innerText === "All accounts") return alert("error account number")
+        else if (INTRA_TO_ACCOUNT.innerText === "All accounts") return alert("error to account number")
+        else if (INTRA_AMOUNT.value === "" || typeof (+INTRA_AMOUNT.value) !== "number") return alert("error amount")
+        else if (INTRA_REFERENCE.value === "") return alert("error reference")
+        else if (!INTRA_BTN_INPUT.checked) return alert("error Terms of use")
+
+        else {
+            let objTransferDate = {};
+            objTransferDate.from_account = INTRA_ACCOUNT.innerText
+            objTransferDate.to_account = INTRA_TO_ACCOUNT.innerText
+            objTransferDate.amount = INTRA_AMOUNT.value
+            objTransferDate.reference = INTRA_REFERENCE.value
+
+            let promise = new Promise((resolve, reject) => {
+                let xhrd = new XMLHttpRequest();
+                xhrd.open("POST", "https://server.samtsov.com:8090/api/transfeers/internals/applications", true);
+                xhrd.setRequestHeader("Authorization", 'Bearer ' + `${sessionStorage.getItem("token")}`)
+                xhrd.setRequestHeader("Content-Type", "application/json");
+                xhrd.send(JSON.stringify(objTransferDate));
+                xhrd.addEventListener("readystatechange", function () {
+                    if (this.status === 200) {
+                        resolve(this.responseText)
+                    }
+                    else {
+                        var error = new Error(this.statusText);
+                        if (error !== "OK") {
+                            error.code = this.status;
+                            reject(error);
+                        }
+                    }
+                });
+            })
+            promise
+                .then(
+                    resul => {
+                        document.querySelector(".popup-message").classList.remove("d-none")
+                    },
+                    error => {
+                        alert("Error")
+                    }
+                )
+
+        }
+    })
+}
+if (document.querySelector(".popup-message__close")) {
+    document.querySelector(".popup-message__close").addEventListener("click", () => {
+        document.querySelector(".popup-message").classList.add("d-none")
+    })
+}
+const ONLINE_FORM_SUBMIT = document.querySelector(".online-form__input_submit");
+if (ONLINE_FORM_SUBMIT) {
+    ONLINE_FORM_SUBMIT.addEventListener("click", (e) => {
+        e.preventDefault()
+        const ONLINE_FORM_BLOCK = document.querySelectorAll(".online-form-block");
+        const INPUT_PASSWORD = document.getElementById("input-password")
+        const INPUT_CONFIRM_PASSWORD = document.getElementById("input-confirm-password")
+        let objOpenAccountFormData = {};
+        let getChildElem = e => { return ONLINE_FORM_BLOCK[e].children[1] };
+        let setErrorOnElem = e => {
+            getChildElem(e).classList.add("menu-bord_text-error");
+            getChildElem(e).addEventListener("click", () => {
+                getChildElem(e).classList.remove("menu-bord_text-error");
+                getChildElem(e).value = "";
+            })
+        }
+        let setErrorOnElements = e => {
+            e.classList.add("menu-bord_text-error");
+            e.addEventListener("click", () => {
+                e.classList.remove("menu-bord_text-error");
+                e.value = "";
+            })
+        }
+        for (let i = 0; i < ONLINE_FORM_BLOCK.length - 1; i++) {
+            if (getChildElem(i).value.search(getChildElem(i).getAttribute("pattern")) == -1) { setErrorOnElem(i) };
+            objOpenAccountFormData[ONLINE_FORM_BLOCK[i].children[0].innerText] = getChildElem(i).value.trim();
+        }
+        if (INPUT_PASSWORD.value !== INPUT_CONFIRM_PASSWORD.value) {
+            setErrorOnElements(INPUT_PASSWORD)
+            setErrorOnElements(INPUT_CONFIRM_PASSWORD)
+        }
+        if (!document.querySelector(".menu-bord_text-error")) {
+
+            let promise = new Promise((resolve, rejec) => {
+                let xhrd = new XMLHttpRequest();
+                xhrd.open("POST", "https://server.samtsov.com:8090/mailer/onlines/registrations", true);
+                xhrd.setRequestHeader("Content-Type", "application/json");
+                xhrd.send(JSON.stringify(objOpenAccountFormData));
+                xhrd.addEventListener("readystatechange", function () {
+                    if (this.status === 200) {
+                        resolve(this.responseText)
+                    }
+                    else {
+                        var error = new Error(this.statusText);
+                        if (error !== "OK") {
+                            error.code = this.status;
+                            rejec(error);
+                        }
+                    }
+                });
+            })
+            promise
+                .then(
+                    resul => {
+                        document.querySelector(".popup-message").classList.remove("d-none")
+                    },
+                    error => {
+                        alert("Error")
+                    }
+                )
+        }
+    })
+}
+if (document.querySelector(".form__input_submit")) {
+    document.querySelector(".form__input_submit").addEventListener("click", (e) => {
+        e.preventDefault()
+        let formfiends = document.querySelectorAll(".form-block");
+        let objForm = {};
+        objForm[formfiends[0].children[0].innerText] = formfiends[0].children[1].value
+        objForm[formfiends[1].children[0].innerText] = formfiends[1].children[1].value
+        objForm[formfiends[2].children[0].innerText] = formfiends[2].children[1].value
+        objForm[formfiends[3].children[0].innerText] = formfiends[3].children[1].value
+        let promise = new Promise((resolve, rejec) => {
+            let xhrd = new XMLHttpRequest();
+            xhrd.open("POST", "https://server.samtsov.com:8090/mailer/contacts/forms", true);
+            xhrd.setRequestHeader("Content-Type", "application/json");
+            xhrd.send(JSON.stringify(objForm));
+            xhrd.addEventListener("readystatechange", function () {
+                if (this.status === 200) {
+                    resolve(this.responseText)
+                }
+                else {
+                    var error = new Error(this.statusText);
+                    if (error !== "OK") {
+                        error.code = this.status;
+                        rejec(error);
+                    }
+                }
+            });
+        })
+        promise
+            .then(
+                resul => {
+                    document.querySelector(".popup-message").classList.remove("d-none")
+                },
+                error => {
+                    alert("error")
+                }
+            )
+    })
+
+}
